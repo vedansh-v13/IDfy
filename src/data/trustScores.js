@@ -61,31 +61,36 @@ export function getTrustLevel(score) {
 
 export function computeBadges(owner, rentalsCompleted = 0) {
   const badges = [];
-  
-  // All listed owners are T2 verified (Identity Verified)
-  badges.push({
-    id: 'id_verified',
-    label: 'Identity Verified',
-    description: 'Government ID, selfie, and address verification completed.'
-  });
 
+  // 1. Trusted Owner (uncommon, earned: >= 20 completed rentals)
   const rentals = rentalsCompleted || owner.completedRentals || 0;
-  if (rentals >= 10) {
+  if (rentals >= 20) {
     badges.push({
-      id: 'consistent_owner',
-      label: 'Consistent Owner',
-      description: 'Completed 10+ rentals with no safety issues.'
+      id: 'trusted_owner',
+      label: 'Trusted Owner',
+      description: 'Completed 20+ rentals with a perfect history.'
     });
   }
 
+  // 2. Fast Responder (earned: response time within 1 hour)
   const responseTime = owner.responseTime || '';
-  if (responseTime.includes('within an hour') || responseTime.includes('within 2 hours')) {
+  if (responseTime.includes('within an hour') || responseTime.toLowerCase().includes('1 hour')) {
     badges.push({
       id: 'fast_responder',
       label: 'Fast Responder',
-      description: 'Consistently replies to messages within 2 hours.'
+      description: 'Typically replies to messages within an hour.'
     });
   }
 
   return badges;
+}
+
+export function getTopBadge(badges) {
+  if (!badges || badges.length === 0) return null;
+  // Prioritize Trusted Owner over Fast Responder
+  const trustedOwner = badges.find(b => b.id === 'trusted_owner');
+  if (trustedOwner) return trustedOwner;
+  const fastResponder = badges.find(b => b.id === 'fast_responder');
+  if (fastResponder) return fastResponder;
+  return null;
 }

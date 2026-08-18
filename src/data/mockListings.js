@@ -1,5 +1,5 @@
 import { itemDetailsData } from './itemDetailsData.js';
-import { computeTrustScore, getTrustLevel } from './trustScores.js';
+import { computeTrustScore, getTrustLevel, computeBadges, getTopBadge } from './trustScores.js';
 
 export const mockListings = [
   {
@@ -224,15 +224,18 @@ export const mockListings = [
   }
 ];
 
-// Dynamically enrich listings with Trust System scores/levels
+// Dynamically enrich listings with Trust System scores/levels/badges
 mockListings.forEach(listing => {
   const detail = itemDetailsData[listing.id];
   if (detail && detail.owner) {
     listing.trustScore = computeTrustScore(detail.owner, listing.rentalsCompleted);
     listing.trustLevel = getTrustLevel(listing.trustScore);
+    const badges = computeBadges(detail.owner, listing.rentalsCompleted);
+    listing.topBadge = getTopBadge(badges);
   } else {
     listing.trustScore = 75;
     listing.trustLevel = 'High';
+    listing.topBadge = null;
   }
 });
 

@@ -1249,6 +1249,19 @@ export function renderItemDetails(itemId = '1') {
     const levelVal = getTrustLevel(scoreVal);
     const badgeList = computeBadges(originalItem.owner, originalItem.rentalsCompleted);
     
+    // Compute breakdown points
+    const basePts = 50;
+    const tierPts = originalItem.owner.tier === 'T3' ? 25 : 20; // Default is T2 (20 pts)
+    const rentals = originalItem.rentalsCompleted || 0;
+    const historyPts = rentals >= 20 ? 15 : rentals >= 10 ? 10 : rentals >= 5 ? 5 : 0;
+    const respTime = originalItem.owner.responseTime || '';
+    const speedPts = respTime.includes('within an hour') || respTime.toLowerCase().includes('1 hour') ? 10 :
+                     respTime.includes('within 2 hours') || respTime.toLowerCase().includes('2 hours') ? 7 :
+                     respTime.includes('within 4 hours') || respTime.toLowerCase().includes('4 hours') ? 4 : 0;
+    const joined = originalItem.owner.joined || '';
+    const agePts = joined.includes('2022') || joined.includes('2021') || joined.includes('2020') ? 5 :
+                   joined.includes('2023') ? 3 : 2;
+
     ownerSec.innerHTML = `
       <div class="details-section__title">Listed by</div>
       <div class="owner-info">
@@ -1263,7 +1276,7 @@ export function renderItemDetails(itemId = '1') {
         <div class="trust-profile">
           <div class="trust-score-row">
             <div class="trust-score-display">
-              <span class="trust-score-num">${scoreVal}</span>
+              <span class="trust-score-num">${scoreVal}%</span>
               <span class="trust-score-label">Trust Score</span>
             </div>
             <span class="trust-score-level">${levelVal}</span>
@@ -1284,21 +1297,27 @@ export function renderItemDetails(itemId = '1') {
             </div>
           </div>
           
-          <div class="trust-badges">
-            ${badgeList.map(b => `
-              <span class="trust-badge-chip ${b.id === 'id_verified' ? 'solid' : ''}" title="${b.description}">${b.label}</span>
-            `).join('')}
-          </div>
+          ${badgeList.length > 0 ? `
+            <div style="border-top: 1px solid var(--color-border); margin-top: 12px; padding-top: 12px;">
+              <div class="trust-score-label" style="margin-bottom: 8px;">Earned Recognition</div>
+              <div class="trust-badges">
+                ${badgeList.map(b => `
+                  <span class="trust-badge-chip" title="${b.description}">✦ ${b.label}</span>
+                `).join('')}
+              </div>
+            </div>
+          ` : ''}
           
-          <button class="trust-explainer-btn">About this score</button>
+          <button class="trust-explainer-btn">How this score is calculated</button>
           
           <div class="trust-explainer">
             <div class="trust-explainer-title">Trust Score Breakdown</div>
-            <div class="trust-explainer-item"><span>Base Verification (T2)</span><span>+20</span></div>
-            <div class="trust-explainer-item"><span>Rentals Completed (${originalItem.rentalsCompleted})</span><span>+${originalItem.rentalsCompleted >= 20 ? 15 : originalItem.rentalsCompleted >= 10 ? 10 : originalItem.rentalsCompleted >= 5 ? 5 : 0}</span></div>
-            <div class="trust-explainer-item"><span>Response Speed</span><span>+${originalItem.owner.responseTime.includes('within an hour') || originalItem.owner.responseTime.toLowerCase().includes('1 hour') ? 10 : originalItem.owner.responseTime.includes('within 2 hours') || originalItem.owner.responseTime.toLowerCase().includes('2 hours') ? 7 : originalItem.owner.responseTime.includes('within 4 hours') || originalItem.owner.responseTime.toLowerCase().includes('4 hours') ? 4 : 0}</span></div>
-            <div class="trust-explainer-item"><span>Account Standing</span><span>+${originalItem.owner.joined.includes('2022') || originalItem.owner.joined.includes('2021') || originalItem.owner.joined.includes('2020') ? 5 : originalItem.owner.joined.includes('2023') ? 3 : 2}</span></div>
-            <div style="border-top: 1px solid var(--color-border); margin-top: 4px; padding-top: 4px; font-weight: 500;" class="trust-explainer-item"><span>Total (Capped at 100)</span><span>${scoreVal}</span></div>
+            <div class="trust-explainer-item"><span>Base Value</span><span>${basePts}</span></div>
+            <div class="trust-explainer-item"><span>Identity Verification (T2)</span><span>+${tierPts}</span></div>
+            <div class="trust-explainer-item"><span>Rental History (${rentals} completed)</span><span>+${historyPts}</span></div>
+            <div class="trust-explainer-item"><span>Response Speed</span><span>+${speedPts}</span></div>
+            <div class="trust-explainer-item"><span>Account Standing</span><span>+${agePts}</span></div>
+            <div style="border-top: 1px solid var(--color-border); margin-top: 4px; padding-top: 4px; font-weight: 500;" class="trust-explainer-item"><span>Total Trust Score</span><span>${scoreVal}%</span></div>
           </div>
         </div>
         
@@ -1311,7 +1330,7 @@ export function renderItemDetails(itemId = '1') {
     const explainerNode = ownerSec.querySelector('.trust-explainer');
     explainerBtn.addEventListener('click', () => {
       const isOpen = explainerNode.classList.toggle('open');
-      explainerBtn.textContent = isOpen ? 'Hide details' : 'About this score';
+      explainerBtn.textContent = isOpen ? 'Hide details' : 'How this score is calculated';
     });
 
     ownerSec.querySelector('.owner-chat-btn').addEventListener('click', () => {

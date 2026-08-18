@@ -96,13 +96,8 @@ export function createItemCard(item, isWide = false) {
       flex-wrap: wrap;
       gap: 4px;
     }
-    .pcard__trust-chip {
-      font-family: var(--font-utility);
-      font-size: 8px;
-      letter-spacing: 0.05em;
-      background: var(--color-optical-black);
-      color: #fff;
-      padding: 1px 4px;
+    .pcard__badge-tag {
+      color: var(--color-optical-black);
       font-weight: 500;
     }
   `;
@@ -123,7 +118,11 @@ export function createItemCard(item, isWide = false) {
         <span>·</span>
         <span>${item.rentalsCompleted} Rentals</span>
         <span>·</span>
-        <span class="pcard__trust-chip" title="Trust Score: ${item.trustScore} (${item.trustLevel})">T · ${item.trustScore}</span>
+        <span>Trust ${item.trustScore}%</span>
+        ${item.topBadge ? `
+          <span>·</span>
+          <span class="pcard__badge-tag" title="${item.topBadge.description}">✦ ${item.topBadge.label}</span>
+        ` : ''}
       </div>
     </div>
   `;
