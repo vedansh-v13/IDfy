@@ -48,7 +48,7 @@ export const itemDetailsData = {
     rentalsCompleted: 22,
     availableFrom: 'Available tomorrow',
     images: [
-      'https://images.unsplash.com/photo-1510127852085-5b89ed7c70a7?auto=format&fit=crop&q=80&w=1200',
+      'https://images.unsplash.com/photo-1495707902641-75cac588d2e9?auto=format&fit=crop&q=80&w=1200',
       'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200',
       'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=1200'
     ],

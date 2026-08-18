@@ -19,7 +19,7 @@ export const mockListings = [
     distance: '5.5 km',
     rentalsCompleted: 22,
     availableFrom: 'Available tomorrow',
-    imageUrl: 'https://images.unsplash.com/photo-1510127852085-5b89ed7c70a7?auto=format&fit=crop&q=80&w=800'
+    imageUrl: 'https://images.unsplash.com/photo-1495707902641-75cac588d2e9?auto=format&fit=crop&q=80&w=800'
   },
   {
     id: '3',
