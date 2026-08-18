@@ -173,6 +173,7 @@
     .journey-diagram {
       margin: var(--space-block) 0;
       width: 100%;
+      overflow-x: hidden; /* guard: prevent diagram from leaking into page gutter */
     }
 
     .journey-track {
@@ -190,30 +191,28 @@
       margin-bottom: 20px;
     }
 
-    /* Main flow row: nodes + connectors in a horizontal strip */
+    /* Main flow row: horizontal strip on desktop */
     .journey-row {
       display: flex;
       align-items: center;
       gap: 0;
       flex-wrap: nowrap;
-      overflow-x: auto;
       padding-bottom: 4px;
     }
 
-    /* For the branch sub-row */
+    /* Branch sub-row: indented on desktop to align under Tier 2 Gate */
     .journey-branch-row {
       display: flex;
       align-items: center;
       gap: 0;
       flex-wrap: nowrap;
       margin-top: 12px;
-      padding-left: calc(3 * (var(--node-w, 96px) + 28px)); /* indent past first 3 nodes */
-      --node-w: 96px;
+      /* indent past: Browse + connector + Publish + connector + Complete form + connector = 3 nodes + 3 connectors */
+      padding-left: calc(3 * 96px + 3 * 28px);
     }
-    @media (max-width: 767px) {
+    @media (min-width: 768px) and (max-width: 1100px) {
       .journey-branch-row {
-        padding-left: calc(2 * (80px + 20px));
-        --node-w: 80px;
+        padding-left: calc(3 * 80px + 3 * 20px);
       }
     }
 
@@ -262,13 +261,14 @@
       }
     }
 
-    /* Thin arrow connectors */
+    /* Horizontal arrow connector (desktop default) */
     .journey-connector {
       height: 1px;
       min-width: 20px;
       flex: 0 0 20px;
       background: var(--color-optical-black);
       position: relative;
+      flex-shrink: 0;
     }
     @media (min-width: 768px) {
       .journey-connector { min-width: 28px; flex: 0 0 28px; }
@@ -283,7 +283,7 @@
       border-left-color: var(--color-optical-black);
     }
 
-    /* Branch vertical drop */
+    /* Branch label */
     .journey-branch-marker {
       font-family: var(--font-utility);
       font-size: 7px;
@@ -294,6 +294,64 @@
       white-space: nowrap;
       flex-shrink: 0;
     }
+
+    /* ── MOBILE: stack journey nodes vertically at 600px ── */
+    @media (max-width: 600px) {
+      /* Rows become vertical columns */
+      .journey-row,
+      .journey-branch-row {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-left: 0;  /* reset desktop indent */
+        margin-top: 0;
+      }
+
+      /* Branch row gets a top separator instead of the indent */
+      .journey-branch-row {
+        margin-top: 16px;
+        padding-top: 16px;
+        border-top: 1px dashed var(--color-ground-glass);
+      }
+
+      /* Nodes fill available width, left-aligned */
+      .journey-node,
+      .journey-gate {
+        width: 100%;
+        max-width: 220px;
+        text-align: left;
+        white-space: normal;
+        flex-shrink: 1;
+      }
+
+      /* Connector becomes a vertical line with downward arrowhead */
+      .journey-connector {
+        width: 1px;
+        height: 20px;
+        min-width: 1px;
+        flex: 0 0 20px;
+        /* shift right to sit under the center of the node text */
+        margin-left: 16px;
+      }
+      /* Swap the arrowhead: point down instead of right */
+      .journey-connector::after {
+        right: auto;
+        left: 50%;
+        top: auto;
+        bottom: -1px;
+        transform: translateX(-50%);
+        border: 3px solid transparent;
+        border-top-color: var(--color-optical-black);
+        border-left-color: transparent;
+      }
+
+      /* Branch marker sits above its nodes as a label row */
+      .journey-branch-marker {
+        margin-right: 0;
+        margin-bottom: 10px;
+        display: block;
+      }
+    }
+
 
     /* ── CONSIDERED NOT BUILT ──────────────────────── */
     .cnb-list {
