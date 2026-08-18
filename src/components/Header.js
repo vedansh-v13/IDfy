@@ -65,14 +65,14 @@ export function setupHeader() {
       background: var(--bg-primary);
       border-bottom: 1px solid var(--color-border);
       width: 100%;
-      height: var(--header-height);
+      height: auto;
     }
     
     .header-inner {
       display: grid;
       grid-template-columns: 1fr auto 1fr;
       align-items: center;
-      height: 100%;
+      height: 52px;
       padding: 0 16px;
       max-width: var(--content-max);
       margin: 0 auto;
@@ -430,5 +430,6 @@ export function setupHeader() {
     });
   });
   
+  document.documentElement.style.setProperty('--header-height', '86px');
   return header;
 }
