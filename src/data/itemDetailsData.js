@@ -10,7 +10,7 @@ export const itemDetailsData = {
     availableFrom: 'Available now',
     images: [
       'https://images.unsplash.com/photo-1502920917128-1aa500764cbd?auto=format&fit=crop&q=80&w=1200',
-      'https://images.unsplash.com/photo-1516961642265-531546e84af2?auto=format&fit=crop&q=80&w=1200',
+      'https://images.unsplash.com/photo-1510127852285-a3c758e665e3?auto=format&fit=crop&q=80&w=1200',
       'https://images.unsplash.com/photo-1495707902641-75cac588d2e9?auto=format&fit=crop&q=80&w=1200'
     ],
     description: 'Medium format, 100 MP back-illuminated CMOS sensor. Milled from a single block of aluminum, engineered in Gothenburg, Sweden. Built with 15 stops of dynamic range and 5-axis 7-stop in-body image stabilization.',
