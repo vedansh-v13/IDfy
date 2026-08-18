@@ -19,8 +19,8 @@ export function setupHeader() {
     }
     
     .header-inner {
-      display: flex;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
       align-items: center;
       height: 100%;
       padding: 0 16px;
@@ -38,14 +38,17 @@ export function setupHeader() {
     /* Center — logo */
     .header-logo {
       font-family: var(--font-utility);
-      font-size: 12px;
-      font-weight: 400;
-      letter-spacing: 0.18em;
+      font-size: 9px;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--color-optical-black);
+      color: var(--color-anodized-stone);
       text-decoration: none;
       white-space: nowrap;
       justify-self: center;
+      transition: color 0.15s;
+    }
+    .header-logo:hover {
+      color: var(--color-optical-black);
     }
     
     /* Right zone */
@@ -225,9 +228,13 @@ export function setupHeader() {
     @media (min-width: 1024px) {
       .header-inner {
         padding: 0 24px;
+        grid-template-columns: auto 1fr auto;
+        gap: 32px;
       }
       .header-nav { display: flex; }
       .h-btn--menu { display: none !important; }
+      .header-left { order: 0; }
+      .header-logo { justify-self: unset; }
     }
   `;
   header.appendChild(style);
@@ -284,7 +291,14 @@ export function setupHeader() {
   rightZone.appendChild(tierBadge);
   rightZone.appendChild(profileBtn);
   
+  // Center — Home Anchor
+  const logo = document.createElement('a');
+  logo.href = '#/';
+  logo.className = 'header-logo';
+  logo.textContent = '[ SHOWROOM ]';
+  
   inner.appendChild(leftZone);
+  inner.appendChild(logo);
   inner.appendChild(rightZone);
   header.appendChild(inner);
   

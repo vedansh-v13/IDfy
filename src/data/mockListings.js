@@ -27,7 +27,7 @@ export const mockListings = [
     rating: '5.0',
     distance: '2.1 mi',
     availableFrom: 'Available now',
-    imageUrl: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=800'
+    imageUrl: 'https://images.unsplash.com/photo-1520390138845-126468fc7d0a?auto=format&fit=crop&q=80&w=800'
   },
   {
     id: '4',
@@ -37,7 +37,7 @@ export const mockListings = [
     rating: '4.8',
     distance: '1.8 mi',
     availableFrom: 'Available now',
-    imageUrl: 'https://images.unsplash.com/photo-1610492103183-aaa3c3e4bd15?auto=format&fit=crop&q=80&w=800'
+    imageUrl: 'https://images.unsplash.com/photo-1607462109225-6b64ae2dd3cb?auto=format&fit=crop&q=80&w=800'
   },
   {
     id: '5',
@@ -77,7 +77,7 @@ export const mockListings = [
     rating: '4.8',
     distance: '3.0 mi',
     availableFrom: 'Available tomorrow',
-    imageUrl: 'https://images.unsplash.com/photo-1617005082133-548c4dd27f35?auto=format&fit=crop&q=80&w=800'
+    imageUrl: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&q=80&w=800'
   },
   {
     id: '9',
@@ -127,7 +127,7 @@ export const mockListings = [
     rating: '4.8',
     distance: '2.8 mi',
     availableFrom: 'Available now',
-    imageUrl: 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&q=80&w=800'
+    imageUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800'
   },
   {
     id: '14',

@@ -84,7 +84,7 @@ export const itemDetailsData = {
     distance: '2.1 mi',
     availableFrom: 'Available now',
     images: [
-      'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=1200',
+      'https://images.unsplash.com/photo-1520390138845-126468fc7d0a?auto=format&fit=crop&q=80&w=1200',
       'https://images.unsplash.com/photo-1516961642265-531546e84af2?auto=format&fit=crop&q=80&w=1200'
     ],
     description: 'High-end cinema camera. 8K VV 35.4 Megapixel CMOS sensor. Able to record up to 120 fps at 8K, designed for premium cinematographic output.',
@@ -120,7 +120,7 @@ export const itemDetailsData = {
     distance: '1.8 mi',
     availableFrom: 'Available now',
     images: [
-      'https://images.unsplash.com/photo-1610492103183-aaa3c3e4bd15?auto=format&fit=crop&q=80&w=1200'
+      'https://images.unsplash.com/photo-1607462109225-6b64ae2dd3cb?auto=format&fit=crop&q=80&w=1200'
     ],
     description: 'Full-frame mirrorless camera featuring a 61MP back-illuminated Exmor R CMOS sensor and AI processing unit for next-generation autofocus.',
     owner: {
@@ -256,7 +256,7 @@ export const itemDetailsData = {
     distance: '3.0 mi',
     availableFrom: 'Available tomorrow',
     images: [
-      'https://images.unsplash.com/photo-1617005082133-548c4dd27f35?auto=format&fit=crop&q=80&w=1200'
+      'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&q=80&w=1200'
     ],
     description: 'Groundbreaking manual focus lens engineered for Nikon Z mirrorless cameras. Exceptional rendering, point-light reproduction, and sharpness.',
     owner: {
@@ -426,7 +426,7 @@ export const itemDetailsData = {
     distance: '2.8 mi',
     availableFrom: 'Available now',
     images: [
-      'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&q=80&w=1200'
+      'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1200'
     ],
     description: 'High-intensity COB LED light fixture. Extremely bright output, weather-resistant design, and Bowens mount compatibility for light shapers.',
     owner: {
