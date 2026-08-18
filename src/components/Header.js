@@ -138,7 +138,7 @@ export function setupHeader() {
       color: var(--color-optical-black);
       text-decoration: none;
       padding: 0 14px;
-      height: var(--header-height);
+      height: 52px;
       display: inline-flex;
       align-items: center;
       border-right: 1px solid var(--color-border);
@@ -166,7 +166,7 @@ export function setupHeader() {
       pointer-events: auto;
     }
     .mob-menu__head {
-      height: var(--header-height);
+      height: 52px;
       border-bottom: 1px solid var(--color-border);
       display: flex;
       align-items: center;
