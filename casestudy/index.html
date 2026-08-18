@@ -169,96 +169,166 @@
       color: #555;
     }
 
-    /* ── SECTION 2 — NATIVE DIAGRAM ───────────────── */
-    .tier-diagram {
+    /* ── SECTION 2 — JOURNEY DIAGRAM ─────────────────── */
+    .journey-diagram {
       margin: var(--space-block) 0;
-      border: 1px solid var(--color-ground-glass);
-      background-color: #fff;
+      width: 100%;
     }
 
-    .diagram-header {
-      display: grid;
-      grid-template-columns: 80px 1.5fr 2fr 1.5fr;
-      border-bottom: 1px solid var(--color-optical-black);
-      padding: 14px 20px;
-      background: var(--color-titanium-fog);
-    }
-
-    .diagram-row {
-      display: grid;
-      grid-template-columns: 80px 1.5fr 2fr 1.5fr;
+    .journey-track {
+      padding: 32px 0;
       border-bottom: 1px solid var(--color-ground-glass);
-      padding: 20px;
-      align-items: start;
     }
+    .journey-track:last-child { border-bottom: none; }
 
-    .diagram-row:last-child {
-      border-bottom: none;
-    }
-
-    .col-header {
+    .journey-track-label {
       font-family: var(--font-utility);
-      font-size: 9px;
-      font-weight: 600;
+      font-size: 8px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-anodized-stone);
+      margin-bottom: 20px;
+    }
+
+    /* Main flow row: nodes + connectors in a horizontal strip */
+    .journey-row {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    /* For the branch sub-row */
+    .journey-branch-row {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex-wrap: nowrap;
+      margin-top: 12px;
+      padding-left: calc(3 * (var(--node-w, 96px) + 28px)); /* indent past first 3 nodes */
+      --node-w: 96px;
+    }
+    @media (max-width: 767px) {
+      .journey-branch-row {
+        padding-left: calc(2 * (80px + 20px));
+        --node-w: 80px;
+      }
+    }
+
+    .journey-node {
+      font-family: var(--font-utility);
+      font-size: 8px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-optical-black);
+      border: 1px solid var(--color-optical-black);
+      background: transparent;
+      padding: 6px 10px;
+      white-space: nowrap;
+      min-width: 80px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    @media (min-width: 768px) {
+      .journey-node {
+        font-size: 9px;
+        padding: 7px 14px;
+        min-width: 96px;
+      }
+    }
+
+    /* Gate nodes: inverted fill */
+    .journey-gate {
+      font-family: var(--font-utility);
+      font-size: 8px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--color-optical-black);
+      border: 1px solid var(--color-optical-black);
+      padding: 6px 10px;
+      white-space: nowrap;
+      min-width: 80px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    @media (min-width: 768px) {
+      .journey-gate {
+        font-size: 9px;
+        padding: 7px 14px;
+        min-width: 96px;
+      }
+    }
+
+    /* Thin arrow connectors */
+    .journey-connector {
+      height: 1px;
+      min-width: 20px;
+      flex: 0 0 20px;
+      background: var(--color-optical-black);
+      position: relative;
+    }
+    @media (min-width: 768px) {
+      .journey-connector { min-width: 28px; flex: 0 0 28px; }
+    }
+    .journey-connector::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      border: 3px solid transparent;
+      border-left-color: var(--color-optical-black);
+    }
+
+    /* Branch vertical drop */
+    .journey-branch-marker {
+      font-family: var(--font-utility);
+      font-size: 7px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--color-anodized-stone);
+      margin-right: 8px;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
-    .col-tier {
-      font-family: var(--font-utility);
-      font-size: 10px;
-      letter-spacing: 0.05em;
+    /* ── CONSIDERED NOT BUILT ──────────────────────── */
+    .cnb-list {
+      margin-top: 40px;
+    }
+
+    .cnb-item {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--color-ground-glass);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+    .cnb-item:last-child { border-bottom: none; }
+
+    @media (min-width: 768px) {
+      .cnb-item {
+        grid-template-columns: 260px 1fr;
+        gap: 24px;
+        align-items: baseline;
+      }
+    }
+
+    .cnb-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 600;
       color: var(--color-optical-black);
-      font-weight: 600;
     }
 
-    .col-title {
-      font-weight: 600;
+    .cnb-desc {
       font-size: 14px;
-    }
-
-    .col-desc {
-      font-size: 13px;
-      color: #555;
-      line-height: 1.5;
-      padding-right: 12px;
-    }
-
-    @media (max-width: 767px) {
-      .diagram-header {
-        display: none;
-      }
-      .diagram-row {
-        grid-template-columns: 1fr;
-        gap: 8px;
-        padding: 16px;
-      }
-      .col-tier::after {
-        content: ' • ' attr(data-label);
-        font-family: var(--font-body);
-        font-weight: normal;
-        text-transform: none;
-      }
-      .col-tier {
-        border-bottom: 1px solid var(--color-ground-glass);
-        padding-bottom: 4px;
-        margin-bottom: 4px;
-      }
-      .col-desc {
-        font-size: 13px;
-        margin-bottom: 8px;
-      }
-      .col-desc::before {
-        content: attr(data-header) ": ";
-        font-weight: 600;
-        font-size: 10px;
-        font-family: var(--font-utility);
-        text-transform: uppercase;
-        display: block;
-        color: var(--color-anodized-stone);
-        margin-bottom: 2px;
-      }
+      line-height: 1.65;
+      color: #666;
+      margin: 0;
     }
 
     /* ── SECTION 3 — THE EVIDENCE ──────────────────── */
@@ -613,7 +683,7 @@
       <h1>Verification that builds trust without breaking the rental funnel.</h1>
       
       <p class="lead-text">
-        This platform lets people rent high-value items, like cameras, drones, and designer clothing, from each other. Before any transaction happens, both parties have to verify their identity. The trade-off is clear: verification keeps the platform secure, but asking for personal details too early turns away users who haven't seen the value of the service yet.
+        This platform lets people rent high-value items from each other: cameras, drones, designer clothing. Both parties verify before any transaction happens. The tension is simple: verification protects the platform, but asking for personal details too early pushes away users who haven't seen the value yet.
       </p>
 
       <div class="problem-grid">
@@ -626,7 +696,7 @@
         <div class="problem-box">
           <h3>The User Problem</h3>
           <p>
-            New users want to browse first, not upload passports. When they do decide to rent or list, they need to know why their data is required, how long the check will take, and what happens if the automated system rejects their scan. Leaving these questions unanswered makes people drop out out of frustration or suspicion.
+            New users want to browse first, not upload passports. When they do decide to rent or list, they need to know why their data is required, how long the check takes, and what happens if the scan fails. Unanswered, those questions cause people to drop out from frustration or suspicion.
           </p>
         </div>
       </div>
@@ -639,57 +709,67 @@
       <span class="utility-tag">The Decision</span>
       <h2>Verification is triggered by intent, not by account creation.</h2>
       <p>
-        Instead of blocking users at the sign-up screen, we tie verification to actions that require trust, like sending a rental request or publishing a listing. Browsing and searching remain open to everyone without friction.
+        Instead of blocking users at sign-up, we tie verification to actions that carry actual financial risk: sending a rental request or publishing a listing. Browsing stays open to everyone.
       </p>
     </div>
 
-    <!-- TIERING TABLE (NATIVE GRAPHIC) -->
+    <!-- USER JOURNEY FLOW DIAGRAM -->
     <div class="section-inner">
-      <div class="tier-diagram">
-        <div class="diagram-header">
-          <div class="col-header">Tier</div>
-          <div class="col-header">Trigger</div>
-          <div class="col-header">Verification Required</div>
-          <div class="col-header">What's Unlocked</div>
+      <div class="journey-diagram">
+
+        <!-- TRACK A: RENTER -->
+        <div class="journey-track">
+          <div class="journey-track-label">T0 &rarr; T1 &nbsp;// Renter</div>
+          <div class="journey-row">
+            <div class="journey-node">Browse</div>
+            <div class="journey-connector"></div>
+            <div class="journey-node">Tap &ldquo;Rent&rdquo;</div>
+            <div class="journey-connector"></div>
+            <div class="journey-gate">Tier 1 Gate</div>
+            <div class="journey-connector"></div>
+            <div class="journey-node">ID + Selfie</div>
+            <div class="journey-connector"></div>
+            <div class="journey-node">Verified</div>
+          </div>
         </div>
 
-        <div class="diagram-row">
-          <div class="col-tier" data-label="Browse">T0 // BROWSE</div>
-          <div class="col-title">Marketplace Entry</div>
-          <div class="col-desc" data-header="Verification Required">None. Free anonymous access.</div>
-          <div class="col-desc" data-header="What's Unlocked">Explore catalog, view item details, check owner availability.</div>
+        <!-- TRACK B: LISTER (with Tier 3 branch) -->
+        <div class="journey-track">
+          <div class="journey-track-label">T0 &rarr; T2 / T3 &nbsp;// Lister</div>
+          <div class="journey-row">
+            <div class="journey-node">Browse</div>
+            <div class="journey-connector"></div>
+            <div class="journey-node">Tap &ldquo;Publish&rdquo;</div>
+            <div class="journey-connector"></div>
+            <div class="journey-node">Complete form</div>
+            <div class="journey-connector"></div>
+            <div class="journey-gate">Tier 2 Gate</div>
+            <div class="journey-connector"></div>
+            <div class="journey-node">ID + Address + Payout</div>
+            <div class="journey-connector"></div>
+            <div class="journey-node">Published</div>
+          </div>
+          <!-- Tier 3 branch -->
+          <div class="journey-branch-row">
+            <div class="journey-branch-marker">High-value item &darr;</div>
+            <div class="journey-gate">Tier 3 Gate</div>
+            <div class="journey-connector"></div>
+            <div class="journey-node">Enhanced Review</div>
+            <div class="journey-connector"></div>
+            <div class="journey-node">Published</div>
+          </div>
         </div>
 
-        <div class="diagram-row">
-          <div class="col-tier" data-label="Renter">T1 // RENTER</div>
-          <div class="col-title">Request to Rent</div>
-          <div class="col-desc" data-header="Verification Required">Government ID + Selfie/Liveness</div>
-          <div class="col-desc" data-header="What's Unlocked">Submit rental requests, message owners, complete standard bookings.</div>
-        </div>
-
-        <div class="diagram-row">
-          <div class="col-tier" data-label="Owner">T2 // OWNER</div>
-          <div class="col-title">Publish Listing</div>
-          <div class="col-desc" data-header="Verification Required">Government ID + Selfie + Address Verification + Payout Details</div>
-          <div class="col-desc" data-header="What's Unlocked">List items for rent, receive payouts, manage listing inventory.</div>
-        </div>
-
-        <div class="diagram-row">
-          <div class="col-tier" data-label="Escalated">T3 // ESCALATED</div>
-          <div class="col-title">High-Value Listing / Restricted</div>
-          <div class="col-desc" data-header="Verification Required">Enhanced Review (Proof of Ownership / Manual Review)</div>
-          <div class="col-desc" data-header="What's Unlocked">List equipment valued above standard risk limits, list restricted gear.</div>
-        </div>
       </div>
     </div>
 
     <div class="section-inner text-column" style="margin-top: 40px;">
-      <h2>This concentrates friction at the moment of purchase, which is a deliberate trade-off.</h2>
+      <h2>Friction at the moment of purchase is the deliberate trade-off.</h2>
       <p>
-        Strict verification builds trust but hurts conversion. Requiring an ID check during sign-up satisfies security early, but it asks users to do work before they know if they even want to use the platform. A tiered approach delays this work until it is necessary.
+        An upfront ID check satisfies security early but asks users to do real work before they know whether they want the platform at all. Tiering that check delays it until it is actually necessary.
       </p>
       <p>
-        Casual visitors can browse freely. We introduce friction only when a user's actions create actual financial risk. The downside to this approach is that we place the friction right when intent is highest, when a user clicks "Rent" or "List Item." Introducing delays or confusion at this stage is risky because the user is close to checking out. This design doesn't bypass this tension. It accepts it, prioritizing free discovery and using clear UI to help users through the check when they reach it.
+        Casual visitors browse freely. Friction only appears when a user's actions create financial risk. The downside is real: that friction now lands at the exact moment when intent is highest, right when someone clicks "Rent" or "List Item." Confusion or delay at that point is costly. The design doesn't paper over this tension. It accepts it, and bets that clear UI can carry users through the check once they reach it.
       </p>
     </div>
   </section>
@@ -700,7 +780,7 @@
       <span class="utility-tag">The Experience</span>
       <h2>Four screens, built for specific decisions.</h2>
       <p style="color: var(--color-anodized-stone);">
-        Every screen in this prototype exists to address a specific decision, not to fill out a standard template onboarding flow.
+        Each screen in this prototype answers a specific product decision. None of them are padding.
       </p>
     </div>
 
@@ -710,7 +790,7 @@
       <div class="evidence-item">
         <div class="evidence-text">
           <h3>Marketplace Home</h3>
-          <p>Tier 0 in practice: unrestricted access without verification. We build trust using concrete facts, like rental history and response times, rather than generic badges.</p>
+          <p>Tier 0 in practice: unrestricted access, no sign-in required. Trust is built through specific facts, rental history and response times, not generic rating badges.</p>
         </div>
         <div class="device-pair">
           <!-- Mobile Screen -->
@@ -762,7 +842,7 @@
       <div class="evidence-item">
         <div class="evidence-text">
           <h3>Verification Gate</h3>
-          <p>A reusable component for all three tiers, so users learn a single pattern. For example, Tier 2 triggers when publishing a listing rather than when creating it. This lets owners write and edit their listing before asking them to verify.</p>
+          <p>A reusable component across all three tiers, so users learn one pattern regardless of what they are verifying. Tier 2 triggers at the point of publishing, not at the point of creating a listing. That lets owners write and edit before they are asked to verify.</p>
         </div>
         <div class="device-pair">
           <!-- Mobile Screen -->
@@ -788,7 +868,7 @@
       <div class="evidence-item">
         <div class="evidence-text">
           <h3>Identity Verification</h3>
-          <p>Capture, failure, processing, and success are handled as states within a single flow rather than as separate screens. High-value listings use the same gate with escalated copy for Tier 3. There is no need for a separate review page because the gate scale handles the escalation, changing only the prompts and checks.</p>
+          <p>Capture, failure, processing, and success are states within a single flow, not separate screens. High-value listings use the same gate with escalated prompts and checks for Tier 3. There is no separate review page because the gate handles the escalation itself.</p>
         </div>
         
         <div class="filmstrip">
@@ -829,47 +909,98 @@
     </div>
   </section>
 
+  <!-- SECTION 3.5 — CONSIDERED, NOT BUILT -->
+  <section>
+    <div class="section-inner text-column">
+      <span class="utility-tag">Considered, Not Built</span>
+      <h2>Decisions by omission.</h2>
+      <p>
+        A few directions were scoped out, then either rejected or deferred. Each one had a real reason.
+      </p>
+
+      <div class="cnb-list">
+
+        <div class="cnb-item">
+          <div class="cnb-title">Rent price calculator / availability filter</div>
+          <p class="cnb-desc">Addresses pricing and discovery, not verification or trust. Out of scope for this build.</p>
+        </div>
+
+        <div class="cnb-item">
+          <div class="cnb-title">Dual renter/lister hero storytelling</div>
+          <p class="cnb-desc">Deferred. The hero handles this through a single line of copy rather than splitting the interface into two entry points.</p>
+        </div>
+
+        <div class="cnb-item">
+          <div class="cnb-title">Optional fields during verification</div>
+          <p class="cnb-desc">Portfolio links, social handles, and purpose-to-rent fields were rejected. Collecting non-required data during an already friction-heavy step makes drop-off worse without improving trust. It also runs against the minimal-necessary-verification-per-tier principle in Section 2.</p>
+        </div>
+
+        <div class="cnb-item">
+          <div class="cnb-title">Persona/trust badges</div>
+          <p class="cnb-desc">Labels like "Guest Favourite" were rejected. They contradict the trust-through-specific-facts approach used in Item Details, where star ratings were deliberately replaced with concrete rental history and response-time data.</p>
+        </div>
+
+        <div class="cnb-item">
+          <div class="cnb-title">Use-case based browse filters</div>
+          <p class="cnb-desc">A promising direction for discovery. Deferred for this timeline.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- SECTION 4 — SUCCESS METRICS -->
   <section>
     <div class="section-inner text-column">
       <span class="utility-tag">Validation</span>
       <h2>Measuring whether the trade-off actually holds.</h2>
-      
-      <!-- Primary Metrics -->
-      <div class="metric-section-title">Primary Metrics</div>
-      <div class="metrics-list">
-        
-        <div class="metric-item">
-          <div class="metric-name">Verification Completion Rate by Tier</div>
-          <div class="metric-rationale">Tracks how many users finish verification once started. This helps check if their buying intent is strong enough to handle the extra steps.</div>
-        </div>
-        
-        <div class="metric-item">
-          <div class="metric-name">Time to Verified Status</div>
-          <div class="metric-rationale">Tracks the time from starting the check to receiving a trust score, ensuring the background review process doesn't hold up the rental.</div>
-        </div>
-        
-        <div class="metric-item">
-          <div class="metric-name">Transaction Completion After Verification</div>
-          <div class="metric-rationale">Measures how many users return to complete their booking after verifying, which indicates overall onboarding success.</div>
-        </div>
-        
-      </div>
 
-      <!-- Secondary Metrics -->
-      <div class="metric-section-title">Secondary Metrics</div>
+      <!-- Engagement Metrics -->
+      <div class="metric-section-title">Engagement Metrics</div>
       <div class="metrics-list">
-        
+
         <div class="metric-item">
           <div class="metric-name">Verification Gate Conversion Rate</div>
           <div class="metric-rationale">The percentage of users who click continue when the gate opens rather than closing the window, measuring early friction.</div>
         </div>
-        
+
+        <div class="metric-item">
+          <div class="metric-name">Verification Completion Rate by Tier</div>
+          <div class="metric-rationale">Tracks how many users finish verification once started. This helps check if their buying intent is strong enough to handle the extra steps.</div>
+        </div>
+
+      </div>
+
+      <!-- Outcome Metrics -->
+      <div class="metric-section-title">Outcome Metrics</div>
+      <div class="metrics-list">
+
+        <div class="metric-item">
+          <div class="metric-name">Transaction Completion After Verification</div>
+          <div class="metric-rationale">Measures how many users return to complete their booking after verifying, which indicates overall onboarding success.</div>
+        </div>
+
+        <div class="metric-item">
+          <div class="metric-name">Listing Publish Completion Rate</div>
+          <div class="metric-rationale">The percentage of owners who finish their ID and address checks after writing their listing, monitoring seller drop-off.</div>
+        </div>
+
+      </div>
+
+      <!-- System Performance -->
+      <div class="metric-section-title">System Performance</div>
+      <div class="metrics-list">
+
+        <div class="metric-item">
+          <div class="metric-name">Time to Verified Status</div>
+          <div class="metric-rationale">Tracks the time from starting the check to receiving a trust score, ensuring the background review process doesn't hold up the rental.</div>
+        </div>
+
         <div class="metric-item">
           <div class="metric-name">First-Attempt Capture Success Rate</div>
           <div class="metric-rationale">The share of photo captures that pass automated quality checks on the first attempt, showing if the camera UI is clear.</div>
         </div>
-        
+
         <div class="metric-item">
           <div class="metric-name">Selfie/Liveness Retry Rate</div>
           <div class="metric-rationale">How often users have to retake their selfie due to failed checks, indicating camera or hardware issues.</div>
@@ -880,11 +1011,6 @@
           <div class="metric-rationale">The rate of verifications sent to human reviewers, which highlights how often the automated check fails.</div>
         </div>
 
-        <div class="metric-item">
-          <div class="metric-name">Listing Publish Completion Rate</div>
-          <div class="metric-rationale">The percentage of owners who finish their ID and address checks after writing their listing, monitoring seller drop-off.</div>
-        </div>
-        
       </div>
     </div>
   </section>
@@ -892,9 +1018,9 @@
   <!-- SECTION 5 — CLOSE -->
   <footer>
     <div class="section-inner">
-      <h2>Every screen exists to address a decision, not to check a box.</h2>
+      <h2>Every screen answers a decision, not a checklist item.</h2>
       <p>
-        Designing verification around transaction risk keeps the marketplace open and easy to explore. Trust is not a static badge earned at entry. It is a dynamic clearance level that scales with a user's actions.
+        Tying verification to transaction risk keeps the marketplace open for anyone who wants to browse. Trust is not earned once at sign-up. It scales with what a user actually does.
       </p>
       <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 8px;">
         <a href="../" class="btn-cta btn-cta--amber">&#8592; Live Prototype</a>

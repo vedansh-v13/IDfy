@@ -29,26 +29,65 @@ export function renderMarketplaceHome() {
       flex-direction: column;
     }
     
-    /* Hero image strip — full bleed */
+    /* Hero image — full bleed with overlay */
     .browse-intro__hero-img {
       width: 100%;
-      height: 260px;
+      height: 300px;
       overflow: hidden;
+      position: relative;
     }
     @media (min-width: 768px) {
-      .browse-intro__hero-img { height: 380px; }
+      .browse-intro__hero-img { height: 420px; }
     }
     @media (min-width: 1024px) {
-      .browse-intro__hero-img { height: 480px; }
+      .browse-intro__hero-img { height: 520px; }
     }
     .browse-intro__hero-img img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 35%;
+      object-position: center 42%;
     }
-    
-    /* Text band beneath image */
+
+    /* Dark gradient overlay — bottom 65% of hero */
+    .browse-intro__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(3, 3, 3, 0.82) 0%,
+        rgba(3, 3, 3, 0.45) 42%,
+        rgba(3, 3, 3, 0.0) 100%
+      );
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 32px 28px;
+      gap: 10px;
+    }
+    @media (min-width: 768px) {
+      .browse-intro__overlay { padding: 44px 48px; gap: 12px; }
+    }
+
+    .browse-intro__h1 {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-size: clamp(28px, 4vw, 56px);
+      line-height: 1.06;
+      letter-spacing: -0.025em;
+      color: #fff;
+      margin: 0;
+    }
+
+    .browse-intro__subline {
+      font-family: var(--font-utility);
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+    }
+
+    /* Text band beneath image — caption + body */
     .browse-intro__text {
       border-top: 1px solid var(--color-border);
       display: grid;
@@ -59,46 +98,49 @@ export function renderMarketplaceHome() {
         grid-template-columns: 1fr 1fr;
       }
     }
-    
-    .browse-intro__headline {
-      padding: 32px 24px 28px;
+
+    /* Left caption cell (formerly headline column — now a small label) */
+    .browse-intro__caption {
+      padding: 24px 28px;
       border-bottom: 1px solid var(--color-border);
+      display: flex;
+      align-items: center;
     }
     @media (min-width: 768px) {
-      .browse-intro__headline {
+      .browse-intro__caption {
         border-bottom: none;
         border-right: 1px solid var(--color-border);
-        padding: 40px 36px;
+        padding: 32px 36px;
       }
     }
-    
-    .browse-intro__h1 {
-      font-family: var(--font-display);
-      font-weight: 300;
-      font-size: clamp(26px, 3.5vw, 48px);
-      line-height: 1.08;
-      letter-spacing: -0.025em;
-      color: var(--color-optical-black);
+
+    .browse-intro__caption-label {
+      font-family: var(--font-utility);
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-anodized-stone);
+      line-height: 1.6;
     }
-    
+
     .browse-intro__side {
-      padding: 28px 24px;
+      padding: 24px 28px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 24px;
+      gap: 20px;
     }
     @media (min-width: 768px) {
-      .browse-intro__side { padding: 40px 36px; }
+      .browse-intro__side { padding: 32px 36px; }
     }
-    
+
     .browse-intro__body {
       font-size: 13px;
-      line-height: 1.7;
+      line-height: 1.75;
       color: var(--color-anodized-stone);
-      max-width: 360px;
+      max-width: 380px;
     }
-    
+
     .browse-intro__link {
       font-family: var(--font-utility);
       font-size: 9px;
@@ -268,25 +310,33 @@ export function renderMarketplaceHome() {
   const intro = document.createElement('section');
   intro.className = 'browse-intro';
   intro.setAttribute('aria-label', 'Introduction');
-  
+
+  // Hero image with inline overlay (headline + subline on the photo)
   const heroImg = document.createElement('div');
   heroImg.className = 'browse-intro__hero-img';
-  heroImg.innerHTML = `<img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=1600" alt="Precision optical equipment" loading="eager">`;
-  
+  heroImg.innerHTML = `
+    <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=1600" alt="Precision optical equipment" loading="eager">
+    <div class="browse-intro__overlay">
+      <h1 class="browse-intro__h1">A showroom for precision equipment.</h1>
+      <span class="browse-intro__subline">Browse freely. Verify only when it matters.</span>
+    </div>
+  `;
+
   const textBand = document.createElement('div');
   textBand.className = 'browse-intro__text';
-  
-  const headlineCol = document.createElement('div');
-  headlineCol.className = 'browse-intro__headline';
-  headlineCol.innerHTML = `<h1 class="browse-intro__h1">A showroom for precision equipment.</h1>`;
-  
+
+  // Left caption cell — small utility label anchoring the image
+  const captionCol = document.createElement('div');
+  captionCol.className = 'browse-intro__caption';
+  captionCol.innerHTML = `<span class="browse-intro__caption-label">Cameras, lenses, drones,<br>and precision gear — available to borrow.</span>`;
+
   const sideCol = document.createElement('div');
   sideCol.className = 'browse-intro__side';
-  
+
   const body = document.createElement('p');
   body.className = 'browse-intro__body';
-  body.textContent = 'Cameras, drones, and gear are available to borrow. Browse the full collection freely. Verification takes two minutes and is requested only when you choose to rent or list.';
-  
+  body.textContent = 'Browse the full catalog without signing in. Verification — an ID check and a selfie — is requested only when you choose to rent. Owners go through an extra address and payout step before their first listing goes live.';
+
   const disclosureBtn = document.createElement('button');
   disclosureBtn.className = 'browse-intro__link';
   disclosureBtn.innerHTML = 'Verification schedule →';
@@ -339,13 +389,13 @@ export function renderMarketplaceHome() {
       scheduleContainer.style.marginTop = '0px';
     }
   });
-  
+
   sideCol.appendChild(body);
   sideCol.appendChild(disclosureBtn);
   sideCol.appendChild(scheduleContainer);
-  textBand.appendChild(headlineCol);
+  textBand.appendChild(captionCol);
   textBand.appendChild(sideCol);
-  
+
   intro.appendChild(heroImg);
   intro.appendChild(textBand);
   page.appendChild(intro);
