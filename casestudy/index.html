@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IDfy Case Study — Progressive Verification Design</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Instrument+Sans:wght@400;500;600&family=Space+Mono&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ── DESIGN SYSTEM VARIABLES ───────────────────── */
+    :root {
+      --color-optical-black: #030303;
+      --color-coating-amber: #B8A062;
+      --color-anodized-stone: #9E9E8E;
+      --color-ground-glass: #E8E5DF;
+      --color-titanium-fog: #F7F6F3;
+      
+      --font-display: 'Cormorant Garamond', serif;
+      --font-body: 'Instrument Sans', sans-serif;
+      --font-utility: 'Space Mono', monospace;
+      
+      --max-width-text: 680px;
+      --max-width-content: 1100px;
+      
+      --space-section: clamp(60px, 8vw, 120px);
+      --space-block: clamp(24px, 4vw, 48px);
+      --space-element: 16px;
+    }
+
+    /* ── BASE STYLES ───────────────────────────────── */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      background-color: var(--color-titanium-fog);
+      color: var(--color-optical-black);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ── TYPOGRAPHY ────────────────────────────────── */
+    h1, h2, h3 {
+      font-family: var(--font-display);
+      font-weight: 300;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+
+    h1 {
+      font-size: clamp(36px, 5.5vw, 68px);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-size: clamp(26px, 3.5vw, 40px);
+      margin-bottom: var(--space-element);
+    }
+
+    h3 {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin-bottom: 24px;
+      color: var(--color-optical-black);
+      font-size: 16px;
+    }
+
+    .utility-tag {
+      font-family: var(--font-utility);
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-coating-amber);
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    .lead-text {
+      font-family: var(--font-display);
+      font-size: clamp(20px, 3vw, 26px);
+      line-height: 1.45;
+      font-style: italic;
+      color: var(--color-optical-black);
+      margin-bottom: 32px;
+    }
+
+    /* ── EDITORIAL CONTAINERS ──────────────────────── */
+    header, section, footer {
+      padding: var(--space-section) 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-bottom: 1px solid var(--color-ground-glass);
+    }
+
+    .section-inner {
+      width: 100%;
+      max-width: var(--max-width-content);
+    }
+
+    .text-column {
+      max-width: var(--max-width-text);
+      margin: 0 auto;
+    }
+
+    /* ── SECTION 1 — HEADER ───────────────────────── */
+    header {
+      min-height: 80vh;
+      justify-content: center;
+      text-align: center;
+      background-color: #fff;
+    }
+    
+    header .text-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header h1 {
+      margin-bottom: 40px;
+      font-weight: 300;
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      margin-top: 56px;
+      text-align: left;
+      border-top: 1px solid var(--color-ground-glass);
+      padding-top: 40px;
+    }
+
+    @media (min-width: 768px) {
+      .problem-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .problem-box h3 {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--color-optical-black);
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--color-optical-black);
+      padding-bottom: 6px;
+      display: inline-block;
+    }
+
+    .problem-box p {
+      font-size: 15px;
+      line-height: 1.6;
+      color: #555;
+    }
+
+    /* ── SECTION 2 — NATIVE DIAGRAM ───────────────── */
+    .tier-diagram {
+      margin: var(--space-block) 0;
+      border: 1px solid var(--color-ground-glass);
+      background-color: #fff;
+    }
+
+    .diagram-header {
+      display: grid;
+      grid-template-columns: 80px 1.5fr 2fr 1.5fr;
+      border-bottom: 1px solid var(--color-optical-black);
+      padding: 14px 20px;
+      background: var(--color-titanium-fog);
+    }
+
+    .diagram-row {
+      display: grid;
+      grid-template-columns: 80px 1.5fr 2fr 1.5fr;
+      border-bottom: 1px solid var(--color-ground-glass);
+      padding: 20px;
+      align-items: start;
+    }
+
+    .diagram-row:last-child {
+      border-bottom: none;
+    }
+
+    .col-header {
+      font-family: var(--font-utility);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-anodized-stone);
+    }
+
+    .col-tier {
+      font-family: var(--font-utility);
+      font-size: 10px;
+      letter-spacing: 0.05em;
+      color: var(--color-optical-black);
+      font-weight: 600;
+    }
+
+    .col-title {
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .col-desc {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.5;
+      padding-right: 12px;
+    }
+
+    @media (max-width: 767px) {
+      .diagram-header {
+        display: none;
+      }
+      .diagram-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding: 16px;
+      }
+      .col-tier::after {
+        content: ' • ' attr(data-label);
+        font-family: var(--font-body);
+        font-weight: normal;
+        text-transform: none;
+      }
+      .col-tier {
+        border-bottom: 1px solid var(--color-ground-glass);
+        padding-bottom: 4px;
+        margin-bottom: 4px;
+      }
+      .col-desc {
+        font-size: 13px;
+        margin-bottom: 8px;
+      }
+      .col-desc::before {
+        content: attr(data-header) ": ";
+        font-weight: 600;
+        font-size: 10px;
+        font-family: var(--font-utility);
+        text-transform: uppercase;
+        display: block;
+        color: var(--color-anodized-stone);
+        margin-bottom: 2px;
+      }
+    }
+
+    /* ── SECTION 3 — THE EVIDENCE ──────────────────── */
+    .evidence-group {
+      margin-top: 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 100px;
+    }
+
+    .evidence-item {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .evidence-text {
+      max-width: var(--max-width-text);
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .evidence-text p {
+      font-size: 15px;
+      color: #666;
+      max-width: 580px;
+      margin: 8px auto 0;
+    }
+
+    /* Device frames styling */
+    .device-pair {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+      width: 100%;
+    }
+
+    @media (min-width: 992px) {
+      .device-pair {
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-end;
+      }
+      .device-pair > * {
+        flex-shrink: 0;
+      }
+    }
+
+    /* Minimal Mobile Frame */
+    .mobile-frame {
+      width: 320px;
+      border: 6px solid var(--color-optical-black);
+      border-radius: 28px;
+      background-color: #fff;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mobile-frame img {
+      width: 100%;
+      display: block;
+      height: auto;
+    }
+
+    /* Minimal Desktop Browser Frame */
+    .desktop-frame {
+      width: 100%;
+      max-width: 780px;
+      border: 1px solid var(--color-ground-glass);
+      border-radius: 8px;
+      background-color: #fff;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .browser-header {
+      background: var(--color-ground-glass);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .browser-dots {
+      display: flex;
+      gap: 4px;
+    }
+
+    .browser-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.2);
+    }
+
+    .browser-address {
+      flex-grow: 1;
+      background: rgba(255,255,255,0.7);
+      border-radius: 4px;
+      height: 16px;
+      max-width: 380px;
+      margin: 0 auto;
+    }
+
+    .desktop-frame img {
+      width: 100%;
+      display: block;
+      height: auto;
+    }
+
+    /* Horizontal Filmstrip (Mobile screen flow) */
+    .filmstrip {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 768px) {
+      .filmstrip {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .filmstrip-frame {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .filmstrip-label {
+      font-family: var(--font-utility);
+      font-size: 8px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-anodized-stone);
+    }
+
+    .filmstrip-frame .mobile-frame {
+      width: 100%;
+      max-width: 240px;
+      border-width: 4px;
+      border-radius: 20px;
+    }
+
+    /* ── SECTION 4 — METRICS ───────────────────────── */
+    .metrics-list {
+      margin-top: 40px;
+    }
+
+    .metric-section-title {
+      font-family: var(--font-utility);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-optical-black);
+      border-bottom: 1px solid var(--color-optical-black);
+      padding-bottom: 6px;
+      margin-top: 48px;
+      margin-bottom: 24px;
+    }
+
+    .metric-item {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--color-ground-glass);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      align-items: baseline;
+    }
+
+    @media (min-width: 768px) {
+      .metric-item {
+        grid-template-columns: 260px 1fr;
+        gap: 24px;
+      }
+    }
+
+    .metric-name {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--color-optical-black);
+    }
+
+    .metric-rationale {
+      font-size: 14px;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    /* ── SECTION 5 — FOOTER ───────────────────────── */
+    footer {
+      background-color: var(--color-optical-black);
+      color: #fff;
+      text-align: center;
+      padding: 100px 24px;
+      border-bottom: none;
+    }
+
+    footer h2 {
+      font-size: clamp(28px, 4vw, 46px);
+      max-width: 740px;
+      margin: 0 auto var(--space-block);
+      line-height: 1.15;
+    }
+
+    footer p {
+      color: var(--color-anodized-stone);
+      max-width: 480px;
+      margin: 0 auto var(--space-block);
+      font-size: 15px;
+    }
+
+    .btn-cta {
+      font-family: var(--font-utility);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 14px 28px;
+      background: transparent;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .btn-cta:hover {
+      background: #fff;
+      color: var(--color-optical-black);
+      border-color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SECTION 1 — OPENING -->
+  <header>
+    <div class="text-column">
+      <span class="utility-tag">Product Design Case Study</span>
+      <h1>Verification that earns trust without costing conversion.</h1>
+      
+      <p class="lead-text">
+        This platform lets people rent high-value items — cameras, drones, designer clothing — from each other. Every renter and owner must be verified before transacting. The core product challenge: identity verification is mandatory, but every unnecessary step before it costs users who haven't yet experienced any value.
+      </p>
+
+      <div class="problem-grid">
+        <div class="problem-box">
+          <h3>The Business Problem</h3>
+          <p>
+            The platform's success depends on establishing trust between strangers without making onboarding so burdensome that prospective users abandon the process. Every renter and owner must complete identity verification and receive a trust score before participating, satisfying security requirements while maintaining a high conversion rate. The design challenge is therefore to create a verification experience that communicates credibility, manages uncertainty, and minimizes unnecessary friction so more users complete onboarding and become active participants.
+          </p>
+        </div>
+        <div class="problem-box">
+          <h3>The User Problem</h3>
+          <p>
+            A first-time user wants to quickly access the marketplace but is asked to provide sensitive personal information before receiving any value. At each step they must understand why information is required, how long verification will take, what remains to be completed, and what happens if verification fails. If these questions remain unanswered, users are likely to delay, abandon, or distrust the platform before reaching activation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- SECTION 2 — PROGRESSIVE VERIFICATION -->
+  <section>
+    <div class="section-inner text-column">
+      <span class="utility-tag">The Decision</span>
+      <h2>Verification is triggered by intent, not by account creation.</h2>
+      <p>
+        Rather than asking every user to verify upfront, verification is tied to the specific action that requires trust — renting, listing, or listing something high-value. Browsing stays completely open.
+      </p>
+    </div>
+
+    <!-- TIERING TABLE (NATIVE GRAPHIC) -->
+    <div class="section-inner">
+      <div class="tier-diagram">
+        <div class="diagram-header">
+          <div class="col-header">Tier</div>
+          <div class="col-header">Trigger</div>
+          <div class="col-header">Verification Required</div>
+          <div class="col-header">What's Unlocked</div>
+        </div>
+
+        <div class="diagram-row">
+          <div class="col-tier" data-label="Browse">T0 // BROWSE</div>
+          <div class="col-title">Marketplace Entry</div>
+          <div class="col-desc" data-header="Verification Required">None. Free anonymous access.</div>
+          <div class="col-desc" data-header="What's Unlocked">Explore catalog, view item details, check owner availability.</div>
+        </div>
+
+        <div class="diagram-row">
+          <div class="col-tier" data-label="Renter">T1 // RENTER</div>
+          <div class="col-title">Request to Rent</div>
+          <div class="col-desc" data-header="Verification Required">Government ID + Selfie/Liveness</div>
+          <div class="col-desc" data-header="What's Unlocked">Submit rental requests, message owners, complete standard bookings.</div>
+        </div>
+
+        <div class="diagram-row">
+          <div class="col-tier" data-label="Owner">T2 // OWNER</div>
+          <div class="col-title">Publish Listing</div>
+          <div class="col-desc" data-header="Verification Required">Government ID + Selfie + Address Verification + Payout Details</div>
+          <div class="col-desc" data-header="What's Unlocked">List items for rent, receive payouts, manage listing inventory.</div>
+        </div>
+
+        <div class="diagram-row">
+          <div class="col-tier" data-label="Escalated">T3 // ESCALATED</div>
+          <div class="col-title">High-Value Listing / Restricted</div>
+          <div class="col-desc" data-header="Verification Required">Enhanced Review (Proof of Ownership / Manual Review)</div>
+          <div class="col-desc" data-header="What's Unlocked">List equipment valued above standard risk limits, list restricted gear.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-inner text-column" style="margin-top: 40px;">
+      <h2>This concentrates friction at the highest-intent moment — and that's a real cost, not a free win.</h2>
+      <p>
+        The hardest product trade-off is that stronger identity verification increases marketplace trust but also increases onboarding friction, which can reduce conversion. Requiring full verification during account creation satisfies compliance early but asks users to invest effort before they have experienced any value. This tiered approach delays verification until users reach meaningful transaction milestones.
+      </p>
+      <p>
+        Casual visitors can explore the marketplace with minimal friction, while progressively stronger verification is introduced only when the user's actions create higher fraud or financial risk. The cost of this approach is that friction becomes concentrated at the exact moment of highest purchase intent — when a user taps "Rent" or "List Item." This is also the point where introducing uncertainty, additional effort, or delays is most expensive from a conversion perspective, because users are closest to completing a transaction. The design does not eliminate this tension; instead, it accepts it as a deliberate trade-off, choosing to preserve a low-friction discovery experience while ensuring compliance only when trust becomes essential for the transaction.
+      </p>
+    </div>
+  </section>
+
+  <!-- SECTION 3 — THE EXPERIENCE -->
+  <section style="background-color: #fff;">
+    <div class="section-inner text-column">
+      <span class="utility-tag">The Experience</span>
+      <h2>Four screens, each existing because of a specific decision made above.</h2>
+      <p style="color: var(--color-anodized-stone);">
+        Every screen exists because of a specific decision made above — not because it's a standard step in an onboarding flow.
+      </p>
+    </div>
+
+    <div class="section-inner evidence-group">
+      
+      <!-- Marketplace Home -->
+      <div class="evidence-item">
+        <div class="evidence-text">
+          <h3>Marketplace Home</h3>
+          <p>Tier 0 in practice — full access, no verification, trust shown through specific facts (rental count, response time) rather than badges.</p>
+        </div>
+        <div class="device-pair">
+          <!-- Mobile Screen -->
+          <div class="mobile-frame">
+            <img src="screenshots/home-mobile.png" alt="Marketplace Home Mobile View">
+          </div>
+          <!-- Desktop Screen -->
+          <div class="desktop-frame">
+            <div class="browser-header">
+              <div class="browser-dots">
+                <div class="browser-dot"></div>
+                <div class="browser-dot"></div>
+                <div class="browser-dot"></div>
+              </div>
+              <div class="browser-address"></div>
+            </div>
+            <img src="screenshots/home-desktop.png" alt="Marketplace Home Desktop View">
+          </div>
+        </div>
+      </div>
+
+      <!-- Item Details -->
+      <div class="evidence-item">
+        <div class="evidence-text">
+          <h3>Item Details</h3>
+          <p>The exact decision point where verification enters. Everything before this moment stays frictionless.</p>
+        </div>
+        <div class="device-pair">
+          <!-- Mobile Screen -->
+          <div class="mobile-frame">
+            <img src="screenshots/details-mobile.png" alt="Item Details Mobile View">
+          </div>
+          <!-- Desktop Screen -->
+          <div class="desktop-frame">
+            <div class="browser-header">
+              <div class="browser-dots">
+                <div class="browser-dot"></div>
+                <div class="browser-dot"></div>
+                <div class="browser-dot"></div>
+              </div>
+              <div class="browser-address"></div>
+            </div>
+            <img src="screenshots/details-desktop.png" alt="Item Details Desktop View">
+          </div>
+        </div>
+      </div>
+
+      <!-- Verification Gate -->
+      <div class="evidence-item">
+        <div class="evidence-text">
+          <h3>Verification Gate</h3>
+          <p>One reusable component across all three tiers, so users learn a single pattern once. Tier 2 is triggered at "Publish Listing" rather than "List Item" — after the form is complete, concentrating verification at the strongest point of user intent.</p>
+        </div>
+        <div class="device-pair">
+          <!-- Mobile Screen -->
+          <div class="mobile-frame">
+            <img src="screenshots/gate-mobile.png" alt="Verification Gate Mobile Bottom Sheet View">
+          </div>
+          <!-- Desktop Screen -->
+          <div class="desktop-frame" style="max-width: 680px;">
+            <div class="browser-header">
+              <div class="browser-dots">
+                <div class="browser-dot"></div>
+                <div class="browser-dot"></div>
+                <div class="browser-dot"></div>
+              </div>
+              <div class="browser-address"></div>
+            </div>
+            <img src="screenshots/gate-desktop.png" alt="Verification Gate Desktop Centered Modal View">
+          </div>
+        </div>
+      </div>
+
+      <!-- Identity Verification Filmstrip -->
+      <div class="evidence-item">
+        <div class="evidence-text">
+          <h3>Identity Verification</h3>
+          <p>Capture, failure recovery, processing, and success as states within one flow, not separate screens. High-value listings use this same gate with escalated review copy (Tier 3) — a dedicated review screen wasn't built separately, since the gate already demonstrates the escalation model; only what's asked and reviewed changes, not the interaction pattern.</p>
+        </div>
+        
+        <div class="filmstrip">
+          <!-- Frame 1: Capture -->
+          <div class="filmstrip-frame">
+            <div class="filmstrip-label">01 // Capture ID</div>
+            <div class="mobile-frame">
+              <img src="screenshots/id-capture.png" alt="ID Capture Camera Screen">
+            </div>
+          </div>
+          
+          <!-- Frame 2: Retry -->
+          <div class="filmstrip-frame">
+            <div class="filmstrip-label">02 // Failure Retry</div>
+            <div class="mobile-frame">
+              <img src="screenshots/id-retry.png" alt="ID Capture Fail Screen">
+            </div>
+          </div>
+          
+          <!-- Frame 3: Processing -->
+          <div class="filmstrip-frame">
+            <div class="filmstrip-label">03 // Verification Processing</div>
+            <div class="mobile-frame">
+              <img src="screenshots/id-processing.png" alt="Liveness Checking Processing Screen">
+            </div>
+          </div>
+          
+          <!-- Frame 4: Success -->
+          <div class="filmstrip-frame">
+            <div class="filmstrip-label">04 // Verification Success</div>
+            <div class="mobile-frame">
+              <img src="screenshots/id-success.png" alt="Verification Successful Confirmation Screen">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 4 — SUCCESS METRICS -->
+  <section>
+    <div class="section-inner text-column">
+      <span class="utility-tag">Validation</span>
+      <h2>Measuring whether the trade-off actually holds.</h2>
+      
+      <!-- Primary Metrics -->
+      <div class="metric-section-title">Primary Metrics</div>
+      <div class="metrics-list">
+        
+        <div class="metric-item">
+          <div class="metric-name">Verification Completion Rate by Tier</div>
+          <div class="metric-rationale">Measures the portion of users who complete the verification flow once triggered, validating if intent is strong enough to overcome friction.</div>
+        </div>
+        
+        <div class="metric-item">
+          <div class="metric-name">Time to Verified Status</div>
+          <div class="metric-rationale">Measures the duration from flow start to trust score assignment, ensuring the asynchronous processing loop doesn't block transaction completion.</div>
+        </div>
+        
+        <div class="metric-item">
+          <div class="metric-name">Transaction Completion After Verification</div>
+          <div class="metric-rationale">Tracks the rate at which verified users return to complete their original high-intent action, measuring onboarding conversion success.</div>
+        </div>
+        
+      </div>
+
+      <!-- Secondary Metrics -->
+      <div class="metric-section-title">Secondary Metrics</div>
+      <div class="metrics-list">
+        
+        <div class="metric-item">
+          <div class="metric-name">Verification Gate Conversion Rate</div>
+          <div class="metric-rationale">Percentage of users who accept the Verification Gate terms rather than closing the dialog, measuring early friction resistance.</div>
+        </div>
+        
+        <div class="metric-item">
+          <div class="metric-name">First-Attempt Capture Success Rate</div>
+          <div class="metric-rationale">Percentage of ID and selfie captures that pass automated quality checks on the first try, highlighting camera UX efficacy.</div>
+        </div>
+        
+        <div class="metric-item">
+          <div class="metric-name">Selfie/Liveness Retry Rate</div>
+          <div class="metric-rationale">The frequency of retry loops triggered by failed liveness checks, measuring capture complexity and hardware variance.</div>
+        </div>
+
+        <div class="metric-item">
+          <div class="metric-name">Manual Review Escalation Rate</div>
+          <div class="metric-rationale">Percentage of verifications routed to manual operators due to automated check failures, reflecting system false-positive rates.</div>
+        </div>
+
+        <div class="metric-item">
+          <div class="metric-name">Listing Publish Completion Rate</div>
+          <div class="metric-rationale">Tracks how many owners successfully complete identity and address checks after preparing their listing, ensuring seller conversion holds.</div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5 — CLOSE -->
+  <footer>
+    <div class="section-inner">
+      <h2>Every screen exists because of a specific decision — not because it's a standard step in an onboarding flow.</h2>
+      <p>
+        By designing verification as a contextual response to transaction risk, we protect the open, explorative nature of the marketplace. Trust is not a static badge earned at entry, but a dynamic clearance level scaled to the user's intent.
+      </p>
+      <a href="../" class="btn-cta">Try the live prototype →</a>
+    </div>
+  </footer>
+
+</body>
+</html>
