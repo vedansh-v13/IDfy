@@ -2,11 +2,6 @@ import { ICONS } from '../icons.js';
 import { state } from '../main.js';
 import { InfoSheet } from './InfoSheet.js';
 
-const RENTAL_STATS = {
-  '1': '14 rentals', '2': '22 rentals', '3': '8 rentals', '4': '19 rentals',
-  '5': '3 rentals',  '6': '11 rentals', '7': '16 rentals', '8': '25 rentals'
-};
-
 export function createItemCard(item, isWide = false) {
   const card = document.createElement('article');
   card.className = `pcard${isWide ? ' pcard--wide' : ''}`;
@@ -100,8 +95,6 @@ export function createItemCard(item, isWide = false) {
   `;
   card.appendChild(style);
   
-  const stats = RENTAL_STATS[item.id] || '';
-  
   card.innerHTML += `
     <div class="pcard__img-wrap">
       <img src="${item.imageUrl}" alt="${item.title}" class="pcard__img" loading="lazy">
@@ -110,9 +103,9 @@ export function createItemCard(item, isWide = false) {
     <div class="pcard__info">
       <div class="pcard__row">
         <span class="pcard__name">${item.title}</span>
-        <span class="pcard__price">$${item.pricePerDay}/day</span>
+        <span class="pcard__price">₹${item.pricePerDay.toLocaleString('en-IN')}/day</span>
       </div>
-      <div class="pcard__meta">${item.distance}${stats ? ' · ' + stats : ''}</div>
+      <div class="pcard__meta">${item.distance} · ${item.rentalsCompleted} Rentals Completed</div>
     </div>
   `;
   

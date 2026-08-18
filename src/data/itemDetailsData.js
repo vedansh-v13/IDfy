@@ -3,9 +3,10 @@ export const itemDetailsData = {
     id: '1',
     title: 'Hasselblad X2D 100C',
     category: 'Cameras',
-    pricePerDay: 340,
-    refundableDeposit: 1500,
-    distance: '1.2 mi',
+    pricePerDay: 34000,
+    refundableDeposit: 150000,
+    distance: '1.9 km',
+    rentalsCompleted: 14,
     availableFrom: 'Available now',
     images: [
       'https://images.unsplash.com/photo-1502920917128-1aa500764cbd?auto=format&fit=crop&q=80&w=1200',
@@ -16,7 +17,7 @@ export const itemDetailsData = {
     owner: {
       name: 'Aditi Sharma',
       joined: 'Joined March 2024',
-      completedRentals: 12,
+      completedRentals: 14,
       responseTime: 'Usually replies within 2 hours',
       cancellationPolicy: 'Free cancellation up to 24 hours before pickup.'
     },
@@ -41,12 +42,13 @@ export const itemDetailsData = {
     id: '2',
     title: 'Leica M11 Rangefinder',
     category: 'Cameras',
-    pricePerDay: 120,
-    refundableDeposit: 800,
-    distance: '3.4 mi',
+    pricePerDay: 12000,
+    refundableDeposit: 50000,
+    distance: '5.5 km',
+    rentalsCompleted: 22,
     availableFrom: 'Available tomorrow',
     images: [
-      'https://images.unsplash.com/photo-1610492103183-aaa3c3e4bd15?auto=format&fit=crop&q=80&w=1200',
+      'https://images.unsplash.com/photo-1510127852085-5b89ed7c70a7?auto=format&fit=crop&q=80&w=1200',
       'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200',
       'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=1200'
     ],
@@ -79,12 +81,13 @@ export const itemDetailsData = {
     id: '3',
     title: 'RED V-Raptor 8K Cinema',
     category: 'Cameras',
-    pricePerDay: 450,
-    refundableDeposit: 2500,
-    distance: '2.1 mi',
+    pricePerDay: 35000,
+    refundableDeposit: 150000,
+    distance: '3.4 km',
+    rentalsCompleted: 8,
     availableFrom: 'Available now',
     images: [
-      'https://images.unsplash.com/photo-1520390138845-126468fc7d0a?auto=format&fit=crop&q=80&w=1200',
+      'https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&q=80&w=1200',
       'https://images.unsplash.com/photo-1516961642265-531546e84af2?auto=format&fit=crop&q=80&w=1200'
     ],
     description: 'High-end cinema camera. 8K VV 35.4 Megapixel CMOS sensor. Able to record up to 120 fps at 8K, designed for premium cinematographic output.',
@@ -107,7 +110,7 @@ export const itemDetailsData = {
     terms: {
       minDuration: '2 days',
       maxDuration: '7 days',
-      lateFees: 'Late returns charged at $600/day.',
+      lateFees: 'Late returns charged at ₹50,000/day.',
       responsibility: 'Full production insurance override required.'
     }
   },
@@ -115,9 +118,10 @@ export const itemDetailsData = {
     id: '4',
     title: 'Sony a7R V Mirrorless',
     category: 'Cameras',
-    pricePerDay: 95,
-    refundableDeposit: 500,
-    distance: '1.8 mi',
+    pricePerDay: 6000,
+    refundableDeposit: 30000,
+    distance: '2.9 km',
+    rentalsCompleted: 19,
     availableFrom: 'Available now',
     images: [
       'https://images.unsplash.com/photo-1607462109225-6b64ae2dd3cb?auto=format&fit=crop&q=80&w=1200'
@@ -126,7 +130,7 @@ export const itemDetailsData = {
     owner: {
       name: 'Elena Rostova',
       joined: 'Joined June 2022',
-      completedRentals: 8,
+      completedRentals: 19,
       responseTime: 'Replies within 4 hours',
       cancellationPolicy: 'Cancellation subject to 50% fee if under 48 hours.'
     },
@@ -149,9 +153,10 @@ export const itemDetailsData = {
     id: '5',
     title: 'Phase One IQ4 150MP',
     category: 'Cameras',
-    pricePerDay: 490,
-    refundableDeposit: 3000,
-    distance: '2.5 mi',
+    pricePerDay: 40000,
+    refundableDeposit: 200000,
+    distance: '4.0 km',
+    rentalsCompleted: 3,
     availableFrom: 'Available Sep 10',
     images: [
       'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=1200'
@@ -160,7 +165,7 @@ export const itemDetailsData = {
     owner: {
       name: 'Aditi Sharma',
       joined: 'Joined March 2024',
-      completedRentals: 12,
+      completedRentals: 3,
       responseTime: 'Usually replies within 2 hours',
       cancellationPolicy: 'Free cancellation up to 24 hours before pickup.'
     },
@@ -183,18 +188,19 @@ export const itemDetailsData = {
     id: '6',
     title: 'Sigma fp L Mirrorless',
     category: 'Cameras',
-    pricePerDay: 85,
-    refundableDeposit: 400,
-    distance: '4.2 mi',
+    pricePerDay: 5000,
+    refundableDeposit: 25000,
+    distance: '6.8 km',
+    rentalsCompleted: 11,
     availableFrom: 'Available now',
     images: [
-      'https://images.unsplash.com/photo-1560935517-5735235555e7?auto=format&fit=crop&q=80&w=1200'
+      'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=1200'
     ],
     description: 'The world\'s smallest and lightest pocketable full-frame mirrorless camera, boasting a 61MP Foveon-derived sensor configuration and raw video capability.',
     owner: {
       name: 'Marcus Vance',
       joined: 'Joined October 2023',
-      completedRentals: 22,
+      completedRentals: 11,
       responseTime: 'Usually replies within an hour',
       cancellationPolicy: 'Free cancellation up to 24 hours before pickup.'
     },
@@ -217,9 +223,10 @@ export const itemDetailsData = {
     id: '7',
     title: 'Leica 50mm f/0.95 Noctilux',
     category: 'Lenses',
-    pricePerDay: 75,
-    refundableDeposit: 600,
-    distance: '1.1 mi',
+    pricePerDay: 6000,
+    refundableDeposit: 40000,
+    distance: '1.8 km',
+    rentalsCompleted: 16,
     availableFrom: 'Available now',
     images: [
       'https://images.unsplash.com/photo-1617005082133-548c4dd27f35?auto=format&fit=crop&q=80&w=1200'
@@ -228,7 +235,7 @@ export const itemDetailsData = {
     owner: {
       name: 'Aditi Sharma',
       joined: 'Joined March 2024',
-      completedRentals: 12,
+      completedRentals: 16,
       responseTime: 'Usually replies within 2 hours',
       cancellationPolicy: 'Free cancellation up to 24 hours before pickup.'
     },
@@ -251,9 +258,10 @@ export const itemDetailsData = {
     id: '8',
     title: 'Nikon Z 58mm f/0.95 Noct',
     category: 'Lenses',
-    pricePerDay: 90,
-    refundableDeposit: 750,
-    distance: '3.0 mi',
+    pricePerDay: 7000,
+    refundableDeposit: 50000,
+    distance: '4.8 km',
+    rentalsCompleted: 25,
     availableFrom: 'Available tomorrow',
     images: [
       'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&q=80&w=1200'
@@ -262,7 +270,7 @@ export const itemDetailsData = {
     owner: {
       name: 'Marcus Vance',
       joined: 'Joined October 2023',
-      completedRentals: 22,
+      completedRentals: 25,
       responseTime: 'Usually replies within an hour',
       cancellationPolicy: 'Free cancellation up to 24 hours before pickup.'
     },
@@ -277,7 +285,7 @@ export const itemDetailsData = {
     terms: {
       minDuration: '1 day',
       maxDuration: '10 days',
-      lateFees: '$150/day late fee.',
+      lateFees: '₹12,000/day late fee.',
       responsibility: 'Secure handling required at all times.'
     }
   },
@@ -285,9 +293,10 @@ export const itemDetailsData = {
     id: '9',
     title: 'DJI Inspire 3 Cinema Drone',
     category: 'Drones',
-    pricePerDay: 280,
-    refundableDeposit: 1500,
-    distance: '5.1 mi',
+    pricePerDay: 22000,
+    refundableDeposit: 100000,
+    distance: '8.2 km',
+    rentalsCompleted: 12,
     availableFrom: 'Available now',
     images: [
       'https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&q=80&w=1200'
@@ -296,7 +305,7 @@ export const itemDetailsData = {
     owner: {
       name: 'Elena Rostova',
       joined: 'Joined June 2022',
-      completedRentals: 8,
+      completedRentals: 12,
       responseTime: 'Replies within 4 hours',
       cancellationPolicy: 'Cancellation subject to 50% fee if under 48 hours.'
     },
@@ -311,7 +320,7 @@ export const itemDetailsData = {
     terms: {
       minDuration: '2 days',
       maxDuration: '7 days',
-      lateFees: 'Late returns charged at $400/day.',
+      lateFees: 'Late returns charged at ₹35,000/day.',
       responsibility: 'Aviation liability insurance must be verified.'
     }
   },
@@ -319,9 +328,10 @@ export const itemDetailsData = {
     id: '10',
     title: 'DJI Mavic 3 Pro Cine',
     category: 'Drones',
-    pricePerDay: 110,
-    refundableDeposit: 600,
-    distance: '1.5 mi',
+    pricePerDay: 9000,
+    refundableDeposit: 40000,
+    distance: '2.4 km',
+    rentalsCompleted: 18,
     availableFrom: 'Available now',
     images: [
       'https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&q=80&w=1200'
@@ -330,7 +340,7 @@ export const itemDetailsData = {
     owner: {
       name: 'Kaito Sato',
       joined: 'Joined January 2024',
-      completedRentals: 19,
+      completedRentals: 18,
       responseTime: 'Usually replies within 2 hours',
       cancellationPolicy: 'Free cancellation up to 24 hours before pickup.'
     },
@@ -353,9 +363,10 @@ export const itemDetailsData = {
     id: '11',
     title: 'Pioneer DJ DDJ-REV7 Deck',
     category: 'Studio',
-    pricePerDay: 130,
-    refundableDeposit: 650,
-    distance: '4.0 mi',
+    pricePerDay: 10000,
+    refundableDeposit: 45000,
+    distance: '6.4 km',
+    rentalsCompleted: 31,
     availableFrom: 'Available now',
     images: [
       'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&q=80&w=1200'
@@ -364,7 +375,7 @@ export const itemDetailsData = {
     owner: {
       name: 'Aditi Sharma',
       joined: 'Joined March 2024',
-      completedRentals: 12,
+      completedRentals: 31,
       responseTime: 'Usually replies within 2 hours',
       cancellationPolicy: 'Free cancellation up to 24 hours before pickup.'
     },
@@ -387,9 +398,10 @@ export const itemDetailsData = {
     id: '12',
     title: 'Shure SM7B Vocal Microphone',
     category: 'Studio',
-    pricePerDay: 25,
-    refundableDeposit: 150,
-    distance: '0.5 mi',
+    pricePerDay: 2000,
+    refundableDeposit: 10000,
+    distance: '0.8 km',
+    rentalsCompleted: 45,
     availableFrom: 'Available now',
     images: [
       'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&q=80&w=1200'
@@ -398,7 +410,7 @@ export const itemDetailsData = {
     owner: {
       name: 'Kaito Sato',
       joined: 'Joined January 2024',
-      completedRentals: 19,
+      completedRentals: 45,
       responseTime: 'Usually replies within 2 hours',
       cancellationPolicy: 'Free cancellation up to 24 hours before pickup.'
     },
@@ -421,9 +433,10 @@ export const itemDetailsData = {
     id: '13',
     title: 'Aputure LS 600d Pro Light',
     category: 'Studio',
-    pricePerDay: 80,
-    refundableDeposit: 400,
-    distance: '2.8 mi',
+    pricePerDay: 6000,
+    refundableDeposit: 30000,
+    distance: '4.5 km',
+    rentalsCompleted: 2,
     availableFrom: 'Available now',
     images: [
       'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1200'
@@ -432,7 +445,7 @@ export const itemDetailsData = {
     owner: {
       name: 'Aditi Sharma',
       joined: 'Joined March 2024',
-      completedRentals: 12,
+      completedRentals: 2,
       responseTime: 'Usually replies within 2 hours',
       cancellationPolicy: 'Free cancellation up to 24 hours before pickup.'
     },
@@ -455,9 +468,10 @@ export const itemDetailsData = {
     id: '14',
     title: 'Sony VPL-XW5000ES Projector',
     category: 'Studio',
-    pricePerDay: 150,
-    refundableDeposit: 800,
-    distance: '3.7 mi',
+    pricePerDay: 12000,
+    refundableDeposit: 60000,
+    distance: '6.0 km',
+    rentalsCompleted: 9,
     availableFrom: 'Available now',
     images: [
       'https://images.unsplash.com/photo-1535016120720-40c646be5580?auto=format&fit=crop&q=80&w=1200'
@@ -466,7 +480,7 @@ export const itemDetailsData = {
     owner: {
       name: 'Marcus Vance',
       joined: 'Joined October 2023',
-      completedRentals: 22,
+      completedRentals: 9,
       responseTime: 'Usually replies within an hour',
       cancellationPolicy: 'Free cancellation up to 24 hours before pickup.'
     },
@@ -489,9 +503,10 @@ export const itemDetailsData = {
     id: '15',
     title: 'PlayStation 5 Console',
     category: 'Gaming',
-    pricePerDay: 30,
-    refundableDeposit: 200,
-    distance: '1.2 mi',
+    pricePerDay: 2500,
+    refundableDeposit: 15000,
+    distance: '1.9 km',
+    rentalsCompleted: 54,
     availableFrom: 'Available now',
     images: [
       'https://images.unsplash.com/photo-1606813907291-d86efa9b94db?auto=format&fit=crop&q=80&w=1200'
@@ -500,7 +515,7 @@ export const itemDetailsData = {
     owner: {
       name: 'Marcus Vance',
       joined: 'Joined October 2023',
-      completedRentals: 22,
+      completedRentals: 54,
       responseTime: 'Usually replies within an hour',
       cancellationPolicy: 'Free cancellation up to 24 hours before pickup.'
     },
@@ -523,9 +538,10 @@ export const itemDetailsData = {
     id: '16',
     title: 'Xbox Series X Console',
     category: 'Gaming',
-    pricePerDay: 30,
-    refundableDeposit: 200,
-    distance: '2.4 mi',
+    pricePerDay: 2500,
+    refundableDeposit: 15000,
+    distance: '3.9 km',
+    rentalsCompleted: 41,
     availableFrom: 'Available now',
     images: [
       'https://images.unsplash.com/photo-1605901309584-818e25960a8f?auto=format&fit=crop&q=80&w=1200'
@@ -534,7 +550,7 @@ export const itemDetailsData = {
     owner: {
       name: 'Elena Rostova',
       joined: 'Joined June 2022',
-      completedRentals: 8,
+      completedRentals: 41,
       responseTime: 'Replies within 4 hours',
       cancellationPolicy: 'Cancellation subject to 50% fee if under 48 hours.'
     },
@@ -557,9 +573,10 @@ export const itemDetailsData = {
     id: '17',
     title: 'Apple Vision Pro VR Headset',
     category: 'Gaming',
-    pricePerDay: 120,
-    refundableDeposit: 1000,
-    distance: '5.2 mi',
+    pricePerDay: 9500,
+    refundableDeposit: 75000,
+    distance: '8.4 km',
+    rentalsCompleted: 6,
     availableFrom: 'Available now',
     images: [
       'https://images.unsplash.com/photo-1593508512255-86ab42a8e620?auto=format&fit=crop&q=80&w=1200'
@@ -568,7 +585,7 @@ export const itemDetailsData = {
     owner: {
       name: 'Elena Rostova',
       joined: 'Joined June 2022',
-      completedRentals: 8,
+      completedRentals: 6,
       responseTime: 'Replies within 4 hours',
       cancellationPolicy: 'Cancellation subject to 50% fee if under 48 hours.'
     },
@@ -583,7 +600,7 @@ export const itemDetailsData = {
     terms: {
       minDuration: '1 day',
       maxDuration: '7 days',
-      lateFees: '$150/day late fee.',
+      lateFees: '₹12,000/day late fee.',
       responsibility: 'Must be carried in its protective travel case.'
     }
   },
@@ -591,9 +608,10 @@ export const itemDetailsData = {
     id: '18',
     title: 'The North Face VE 25 Tent',
     category: 'Outdoor',
-    pricePerDay: 45,
-    refundableDeposit: 250,
-    distance: '6.4 mi',
+    pricePerDay: 3500,
+    refundableDeposit: 20000,
+    distance: '10.3 km',
+    rentalsCompleted: 15,
     availableFrom: 'Available now',
     images: [
       'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&q=80&w=1200'
@@ -602,7 +620,7 @@ export const itemDetailsData = {
     owner: {
       name: 'Kaito Sato',
       joined: 'Joined January 2024',
-      completedRentals: 19,
+      completedRentals: 15,
       responseTime: 'Usually replies within 2 hours',
       cancellationPolicy: 'Free cancellation up to 24 hours before pickup.'
     },
@@ -623,45 +641,47 @@ export const itemDetailsData = {
   },
   '19': {
     id: '19',
-    title: 'Patagonia Grade VII Parka',
-    category: 'Clothing',
-    pricePerDay: 50,
-    refundableDeposit: 250,
-    distance: '3.6 mi',
+    title: 'Sony FE 70-200mm GM II Lens',
+    category: 'Lenses',
+    pricePerDay: 5500,
+    refundableDeposit: 35000,
+    distance: '5.8 km',
+    rentalsCompleted: 0,
     availableFrom: 'Available now',
     images: [
-      'https://images.unsplash.com/photo-1551489186-cf8726f514f8?auto=format&fit=crop&q=80&w=1200'
+      'https://images.unsplash.com/photo-1617005082133-548c4dd27f35?auto=format&fit=crop&q=80&w=1200'
     ],
-    description: 'Ultimate belay parka built for freezing alpine conditions. Mapped baffle construction with high-loft down filling.',
+    description: 'Premium telephoto zoom lens engineered for Sony mirrorless cameras. Exceptional rendering, extremely fast autofocus, and lightweight build.',
     owner: {
       name: 'Kaito Sato',
       joined: 'Joined January 2024',
-      completedRentals: 19,
+      completedRentals: 0,
       responseTime: 'Usually replies within 2 hours',
       cancellationPolicy: 'Free cancellation up to 24 hours before pickup.'
     },
-    condition: 'Great condition, recently washed with down cleaner.',
+    condition: 'Pristine optics. Zoom and focus rings are perfect.',
     specifications: {
-      'Material': '800-fill-power Advanced Global Traceable Down',
-      'Size': 'Men\'s Large',
-      'Weight': '743g'
+      'Focal Length': '70-200mm',
+      'Mount': 'Sony E-Mount',
+      'Weight': '1045g'
     },
-    rentalNotes: 'Do not store compressed. Return clean.',
+    rentalNotes: 'Includes front/rear caps, hood, and carrying case.',
     pickupArea: 'Chamonix, FR',
     terms: {
       minDuration: '1 day',
       maxDuration: '14 days',
       lateFees: 'Standard rate applies.',
-      responsibility: 'Keep away from campfires.'
+      responsibility: 'Ensure front filter is used.'
     }
   },
   '20': {
     id: '20',
     title: 'Arc\'teryx Alpha SV Shell',
     category: 'Clothing',
-    pricePerDay: 35,
-    refundableDeposit: 300,
-    distance: '0.8 mi',
+    pricePerDay: 2500,
+    refundableDeposit: 20000,
+    distance: '1.3 km',
+    rentalsCompleted: 29,
     availableFrom: 'Available now',
     images: [
       'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?auto=format&fit=crop&q=80&w=1200'
@@ -670,7 +690,7 @@ export const itemDetailsData = {
     owner: {
       name: 'Kaito Sato',
       joined: 'Joined January 2024',
-      completedRentals: 19,
+      completedRentals: 29,
       responseTime: 'Usually replies within 2 hours',
       cancellationPolicy: 'Free cancellation up to 24 hours before pickup.'
     },

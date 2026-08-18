@@ -936,11 +936,11 @@ export function renderItemDetails(itemId = '1') {
     pricing.innerHTML = `
       <div class="pricing-cell">
         <span class="pricing-label">Daily rate</span>
-        <span class="pricing-value">$${originalItem.pricePerDay}</span>
+        <span class="pricing-value">₹${originalItem.pricePerDay.toLocaleString('en-IN')}</span>
       </div>
       <div class="pricing-cell">
         <span class="pricing-label">Security deposit</span>
-        <span class="pricing-value">$${originalItem.refundableDeposit}</span>
+        <span class="pricing-value">₹${originalItem.refundableDeposit.toLocaleString('en-IN')}</span>
       </div>
     `;
     sidebar.appendChild(pricing);
@@ -1116,7 +1116,7 @@ export function renderItemDetails(itemId = '1') {
           </div>
         </div>
         <div class="owner-stats">
-          ${originalItem.owner.completedRentals} completed rentals<br>
+          ${originalItem.rentalsCompleted} Rentals Completed<br>
           ${originalItem.owner.responseTime}
         </div>
         <button class="owner-chat-btn">Message Owner</button>
@@ -1186,7 +1186,7 @@ export function renderItemDetails(itemId = '1') {
     mobCta.className = 'mob-cta-bar';
     mobCta.innerHTML = `
       <div class="mob-cta-price">
-        <span class="mob-cta-price__val">$${originalItem.pricePerDay}</span>
+        <span class="mob-cta-price__val">₹${originalItem.pricePerDay.toLocaleString('en-IN')}</span>
         <span class="mob-cta-price__label">per day</span>
       </div>
       <button class="rent-btn action-rent-trigger">Rent This Item</button>

@@ -2,20 +2,11 @@ import { ICONS } from '../icons.js';
 import { state } from '../main.js';
 import { InfoSheet } from './InfoSheet.js';
 
-const RENTAL_STATS = {
-  '1': '14 rentals', '2': '22 rentals', '3': '8 rentals', '4': '19 rentals',
-  '5': '3 rentals',  '6': '11 rentals', '7': '16 rentals', '8': '25 rentals'
-};
-
 const DESCRIPTIONS = {
   '1': 'Medium format, 100 MP back-illuminated sensor. Milled from a single block of aluminum, engineered in Sweden.',
   '2': 'Full-frame rangefinder. Manufactured by hand in Wetzlar, Germany. 60 MP triple resolution sensor.',
   '3': 'Cinema-grade aerial. Full-frame 8K gimbal camera, advanced obstacle sensing, precision RTK.',
-  '4': 'GORE-TEX Pro shell. Designed for sustained severe mountain conditions. Every seam sealed.',
-  '5': '150 MP medium format back-illuminated sensor. Maximum resolving power for studio and archival work.',
-  '6': 'World\'s smallest full-frame sensor camera. Modular system, L-mount, Leica glass compatible.',
-  '7': 'Hasselblad aerial imaging. Triple-lens system: 24mm, 70mm, 166mm equivalent focal lengths.',
-  '8': 'Expedition parka. Down fill, wind- and water-resistant. Originally built for polar scientists.'
+  '4': 'World\'s smallest full-frame sensor camera. Modular system, L-mount, Leica glass compatible.'
 };
 
 export function createHeroCard(item) {
@@ -184,7 +175,6 @@ export function createHeroCard(item) {
   `;
   card.appendChild(style);
   
-  const stats = RENTAL_STATS[item.id] || '';
   const desc = DESCRIPTIONS[item.id] || '';
   
   card.innerHTML += `
@@ -198,8 +188,8 @@ export function createHeroCard(item) {
       <h2 class="hero__title">${item.title}</h2>
       <p class="hero__desc">${desc}</p>
       <div class="hero__price-row">
-        <span class="hero__price">$${item.pricePerDay} / day</span>
-        <span class="hero__meta">${stats ? stats : ''}</span>
+        <span class="hero__price">₹${item.pricePerDay.toLocaleString('en-IN')} / day</span>
+        <span class="hero__meta">${item.rentalsCompleted} Rentals Completed</span>
       </div>
       <button class="hero__cta">View details →</button>
     </div>
