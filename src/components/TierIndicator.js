@@ -80,9 +80,9 @@ export function createTierIndicator() {
       <div class="tier-info-section">
         <h4>When it's requested</h4>
         <ul>
-          <li><strong>Tier 1 (Renter)</strong> — Phone number, to initiate any rental request.</li>
-          <li><strong>Tier 2 (Verified)</strong> — Government ID + selfie match, for standard rentals.</li>
-          <li><strong>Tier 3 (Trusted)</strong> — Enhanced screening, for high-value listings.</li>
+          <li><strong>Tier 1 (Renter)</strong>: Phone number verification to initiate rental requests.</li>
+          <li><strong>Tier 2 (Verified)</strong>: Government ID and selfie match for standard rentals.</li>
+          <li><strong>Tier 3 (Trusted)</strong>: Enhanced screening for high-value listings.</li>
         </ul>
       </div>
       <div class="tier-info-section">

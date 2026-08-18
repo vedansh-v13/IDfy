@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IDfy Case Study — Progressive Verification Design</title>
+  <title>IDfy Case Study: Progressive Verification Design</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Instrument+Sans:wght@400;500;600&family=Space+Mono&display=swap" rel="stylesheet">
@@ -610,23 +610,23 @@
   <header>
     <div class="text-column">
       <span class="utility-tag">Product Design Case Study</span>
-      <h1>Verification that earns trust without costing conversion.</h1>
+      <h1>Verification that builds trust without breaking the rental funnel.</h1>
       
       <p class="lead-text">
-        This platform lets people rent high-value items — cameras, drones, designer clothing — from each other. Every renter and owner must be verified before transacting. The core product challenge: identity verification is mandatory, but every unnecessary step before it costs users who haven't yet experienced any value.
+        This platform lets people rent high-value items, like cameras, drones, and designer clothing, from each other. Before any transaction happens, both parties have to verify their identity. The trade-off is clear: verification keeps the platform secure, but asking for personal details too early turns away users who haven't seen the value of the service yet.
       </p>
 
       <div class="problem-grid">
         <div class="problem-box">
           <h3>The Business Problem</h3>
           <p>
-            The platform's success depends on establishing trust between strangers without making onboarding so burdensome that prospective users abandon the process. Every renter and owner must complete identity verification and receive a trust score before participating, satisfying security requirements while maintaining a high conversion rate. The design challenge is therefore to create a verification experience that communicates credibility, manages uncertainty, and minimizes unnecessary friction so more users complete onboarding and become active participants.
+            People won't hand over expensive gear to strangers without verification. But forcing every new sign-up through an ID check destroys conversion rates. The business needs a flow that meets security standards without creating a bottleneck at the front door.
           </p>
         </div>
         <div class="problem-box">
           <h3>The User Problem</h3>
           <p>
-            A first-time user wants to quickly access the marketplace but is asked to provide sensitive personal information before receiving any value. At each step they must understand why information is required, how long verification will take, what remains to be completed, and what happens if verification fails. If these questions remain unanswered, users are likely to delay, abandon, or distrust the platform before reaching activation.
+            New users want to browse first, not upload passports. When they do decide to rent or list, they need to know why their data is required, how long the check will take, and what happens if the automated system rejects their scan. Leaving these questions unanswered makes people drop out out of frustration or suspicion.
           </p>
         </div>
       </div>
@@ -639,7 +639,7 @@
       <span class="utility-tag">The Decision</span>
       <h2>Verification is triggered by intent, not by account creation.</h2>
       <p>
-        Rather than asking every user to verify upfront, verification is tied to the specific action that requires trust — renting, listing, or listing something high-value. Browsing stays completely open.
+        Instead of blocking users at the sign-up screen, we tie verification to actions that require trust, like sending a rental request or publishing a listing. Browsing and searching remain open to everyone without friction.
       </p>
     </div>
 
@@ -684,12 +684,12 @@
     </div>
 
     <div class="section-inner text-column" style="margin-top: 40px;">
-      <h2>This concentrates friction at the highest-intent moment — and that's a real cost, not a free win.</h2>
+      <h2>This concentrates friction at the moment of purchase, which is a deliberate trade-off.</h2>
       <p>
-        The hardest product trade-off is that stronger identity verification increases marketplace trust but also increases onboarding friction, which can reduce conversion. Requiring full verification during account creation satisfies compliance early but asks users to invest effort before they have experienced any value. This tiered approach delays verification until users reach meaningful transaction milestones.
+        Strict verification builds trust but hurts conversion. Requiring an ID check during sign-up satisfies security early, but it asks users to do work before they know if they even want to use the platform. A tiered approach delays this work until it is necessary.
       </p>
       <p>
-        Casual visitors can explore the marketplace with minimal friction, while progressively stronger verification is introduced only when the user's actions create higher fraud or financial risk. The cost of this approach is that friction becomes concentrated at the exact moment of highest purchase intent — when a user taps "Rent" or "List Item." This is also the point where introducing uncertainty, additional effort, or delays is most expensive from a conversion perspective, because users are closest to completing a transaction. The design does not eliminate this tension; instead, it accepts it as a deliberate trade-off, choosing to preserve a low-friction discovery experience while ensuring compliance only when trust becomes essential for the transaction.
+        Casual visitors can browse freely. We introduce friction only when a user's actions create actual financial risk. The downside to this approach is that we place the friction right when intent is highest, when a user clicks "Rent" or "List Item." Introducing delays or confusion at this stage is risky because the user is close to checking out. This design doesn't bypass this tension. It accepts it, prioritizing free discovery and using clear UI to help users through the check when they reach it.
       </p>
     </div>
   </section>
@@ -698,9 +698,9 @@
   <section style="background-color: #fff;">
     <div class="section-inner text-column">
       <span class="utility-tag">The Experience</span>
-      <h2>Four screens, each existing because of a specific decision made above.</h2>
+      <h2>Four screens, built for specific decisions.</h2>
       <p style="color: var(--color-anodized-stone);">
-        Every screen exists because of a specific decision made above — not because it's a standard step in an onboarding flow.
+        Every screen in this prototype exists to address a specific decision, not to fill out a standard template onboarding flow.
       </p>
     </div>
 
@@ -710,7 +710,7 @@
       <div class="evidence-item">
         <div class="evidence-text">
           <h3>Marketplace Home</h3>
-          <p>Tier 0 in practice — full access, no verification, trust shown through specific facts (rental count, response time) rather than badges.</p>
+          <p>Tier 0 in practice: unrestricted access without verification. We build trust using concrete facts, like rental history and response times, rather than generic badges.</p>
         </div>
         <div class="device-pair">
           <!-- Mobile Screen -->
@@ -736,7 +736,7 @@
       <div class="evidence-item">
         <div class="evidence-text">
           <h3>Item Details</h3>
-          <p>The exact decision point where verification enters. Everything before this moment stays frictionless.</p>
+          <p>The decision point. Verification is introduced here, keeping everything before it frictionless.</p>
         </div>
         <div class="device-pair">
           <!-- Mobile Screen -->
@@ -762,7 +762,7 @@
       <div class="evidence-item">
         <div class="evidence-text">
           <h3>Verification Gate</h3>
-          <p>One reusable component across all three tiers, so users learn a single pattern once. Tier 2 is triggered at "Publish Listing" rather than "List Item" — after the form is complete, concentrating verification at the strongest point of user intent.</p>
+          <p>A reusable component for all three tiers, so users learn a single pattern. For example, Tier 2 triggers when publishing a listing rather than when creating it. This lets owners write and edit their listing before asking them to verify.</p>
         </div>
         <div class="device-pair">
           <!-- Mobile Screen -->
@@ -788,7 +788,7 @@
       <div class="evidence-item">
         <div class="evidence-text">
           <h3>Identity Verification</h3>
-          <p>Capture, failure recovery, processing, and success as states within one flow, not separate screens. High-value listings use this same gate with escalated review copy (Tier 3) — a dedicated review screen wasn't built separately, since the gate already demonstrates the escalation model; only what's asked and reviewed changes, not the interaction pattern.</p>
+          <p>Capture, failure, processing, and success are handled as states within a single flow rather than as separate screens. High-value listings use the same gate with escalated copy for Tier 3. There is no need for a separate review page because the gate scale handles the escalation, changing only the prompts and checks.</p>
         </div>
         
         <div class="filmstrip">
@@ -841,17 +841,17 @@
         
         <div class="metric-item">
           <div class="metric-name">Verification Completion Rate by Tier</div>
-          <div class="metric-rationale">Measures the portion of users who complete the verification flow once triggered, validating if intent is strong enough to overcome friction.</div>
+          <div class="metric-rationale">Tracks how many users finish verification once started. This helps check if their buying intent is strong enough to handle the extra steps.</div>
         </div>
         
         <div class="metric-item">
           <div class="metric-name">Time to Verified Status</div>
-          <div class="metric-rationale">Measures the duration from flow start to trust score assignment, ensuring the asynchronous processing loop doesn't block transaction completion.</div>
+          <div class="metric-rationale">Tracks the time from starting the check to receiving a trust score, ensuring the background review process doesn't hold up the rental.</div>
         </div>
         
         <div class="metric-item">
           <div class="metric-name">Transaction Completion After Verification</div>
-          <div class="metric-rationale">Tracks the rate at which verified users return to complete their original high-intent action, measuring onboarding conversion success.</div>
+          <div class="metric-rationale">Measures how many users return to complete their booking after verifying, which indicates overall onboarding success.</div>
         </div>
         
       </div>
@@ -862,27 +862,27 @@
         
         <div class="metric-item">
           <div class="metric-name">Verification Gate Conversion Rate</div>
-          <div class="metric-rationale">Percentage of users who accept the Verification Gate terms rather than closing the dialog, measuring early friction resistance.</div>
+          <div class="metric-rationale">The percentage of users who click continue when the gate opens rather than closing the window, measuring early friction.</div>
         </div>
         
         <div class="metric-item">
           <div class="metric-name">First-Attempt Capture Success Rate</div>
-          <div class="metric-rationale">Percentage of ID and selfie captures that pass automated quality checks on the first try, highlighting camera UX efficacy.</div>
+          <div class="metric-rationale">The share of photo captures that pass automated quality checks on the first attempt, showing if the camera UI is clear.</div>
         </div>
         
         <div class="metric-item">
           <div class="metric-name">Selfie/Liveness Retry Rate</div>
-          <div class="metric-rationale">The frequency of retry loops triggered by failed liveness checks, measuring capture complexity and hardware variance.</div>
+          <div class="metric-rationale">How often users have to retake their selfie due to failed checks, indicating camera or hardware issues.</div>
         </div>
 
         <div class="metric-item">
           <div class="metric-name">Manual Review Escalation Rate</div>
-          <div class="metric-rationale">Percentage of verifications routed to manual operators due to automated check failures, reflecting system false-positive rates.</div>
+          <div class="metric-rationale">The rate of verifications sent to human reviewers, which highlights how often the automated check fails.</div>
         </div>
 
         <div class="metric-item">
           <div class="metric-name">Listing Publish Completion Rate</div>
-          <div class="metric-rationale">Tracks how many owners successfully complete identity and address checks after preparing their listing, ensuring seller conversion holds.</div>
+          <div class="metric-rationale">The percentage of owners who finish their ID and address checks after writing their listing, monitoring seller drop-off.</div>
         </div>
         
       </div>
@@ -892,9 +892,9 @@
   <!-- SECTION 5 — CLOSE -->
   <footer>
     <div class="section-inner">
-      <h2>Every screen exists because of a specific decision — not because it's a standard step in an onboarding flow.</h2>
+      <h2>Every screen exists to address a decision, not to check a box.</h2>
       <p>
-        By designing verification as a contextual response to transaction risk, we protect the open, explorative nature of the marketplace. Trust is not a static badge earned at entry, but a dynamic clearance level scaled to the user's intent.
+        Designing verification around transaction risk keeps the marketplace open and easy to explore. Trust is not a static badge earned at entry. It is a dynamic clearance level that scales with a user's actions.
       </p>
       <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 8px;">
         <a href="../" class="btn-cta btn-cta--amber">&#8592; Live Prototype</a>

@@ -285,7 +285,7 @@ export function renderMarketplaceHome() {
   
   const body = document.createElement('p');
   body.className = 'browse-intro__body';
-  body.textContent = 'Cameras, drones, and considered objects — available to borrow. Browse the full collection freely. Verification takes 2 minutes and is requested only when you choose to rent or list.';
+  body.textContent = 'Cameras, drones, and gear are available to borrow. Browse the full collection freely. Verification takes two minutes and is requested only when you choose to rent or list.';
   
   const disclosureBtn = document.createElement('button');
   disclosureBtn.className = 'browse-intro__link';
@@ -375,7 +375,7 @@ export function renderMarketplaceHome() {
   footerLeft.className = 'footer-left';
   footerLeft.innerHTML = `
     <div class="footer-logo">Platform</div>
-    <p class="footer-tagline">A curated showroom for precision equipment. Cameras, drones, and considered objects — available to borrow.</p>
+    <p class="footer-tagline">A curated showroom for precision equipment. Cameras, drones, and gear are available to borrow.</p>
     <div class="footer-copy">© 2026 Platform. All rights reserved.</div>
   `;
   
