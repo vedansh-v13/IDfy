@@ -290,25 +290,59 @@ export function renderMarketplaceHome() {
   const disclosureBtn = document.createElement('button');
   disclosureBtn.className = 'browse-intro__link';
   disclosureBtn.innerHTML = 'Verification schedule →';
+
+  const scheduleContainer = document.createElement('div');
+  scheduleContainer.className = 'browse-intro__schedule';
+  scheduleContainer.style.maxHeight = '0px';
+  scheduleContainer.style.overflow = 'hidden';
+  scheduleContainer.style.transition = 'max-height 0.25s cubic-bezier(0.4, 0, 0.2, 1), margin-top 0.25s';
+  scheduleContainer.style.marginTop = '0px';
+  scheduleContainer.innerHTML = `
+    <div style="padding: var(--space-3) 0; display: flex; flex-direction: column; gap: 8px;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--color-border); padding-bottom: 6px; font-family: var(--font-utility); font-size: 8px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-anodized-stone);">
+        <span>Action</span>
+        <span>Requirement</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; font-size: 13px; color: var(--color-optical-black); opacity: 0.85;">
+        <span>Browse freely</span>
+        <span>No verification</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; font-size: 13px; color: var(--color-optical-black); opacity: 0.85;">
+        <span>Save items</span>
+        <span>No verification</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; font-size: 13px; color: var(--color-optical-black); opacity: 0.85;">
+        <span>Rent an item</span>
+        <span>Phone + ID + Selfie (T1)</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; font-size: 13px; color: var(--color-optical-black); opacity: 0.85;">
+        <span>List standard item</span>
+        <span>Address + Payout (T2)</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; font-size: 13px; color: var(--color-optical-black); opacity: 0.85;">
+        <span>List high-value item</span>
+        <span>Enhanced Review (T3)</span>
+      </div>
+    </div>
+  `;
+
+  let isOpen = false;
   disclosureBtn.addEventListener('click', () => {
-    const node = document.createElement('div');
-    node.innerHTML = `
-      <table class="vtable">
-        <thead><tr><th>Action</th><th>Requires</th></tr></thead>
-        <tbody>
-          <tr><td>Browse</td><td>Nothing</td></tr>
-          <tr><td>Save favourites</td><td>Nothing</td></tr>
-          <tr><td>Rent an item</td><td>Phone + ID + selfie</td></tr>
-          <tr><td>List an item</td><td>Additional verification</td></tr>
-          <tr><td>List high-value items</td><td>Enhanced review</td></tr>
-        </tbody>
-      </table>
-    `;
-    InfoSheet.open({ title: 'When verification is required', contentNode: node });
+    isOpen = !isOpen;
+    if (isOpen) {
+      disclosureBtn.innerHTML = 'Verification schedule ↓';
+      scheduleContainer.style.maxHeight = '240px';
+      scheduleContainer.style.marginTop = '12px';
+    } else {
+      disclosureBtn.innerHTML = 'Verification schedule →';
+      scheduleContainer.style.maxHeight = '0px';
+      scheduleContainer.style.marginTop = '0px';
+    }
   });
   
   sideCol.appendChild(body);
   sideCol.appendChild(disclosureBtn);
+  sideCol.appendChild(scheduleContainer);
   textBand.appendChild(headlineCol);
   textBand.appendChild(sideCol);
   
