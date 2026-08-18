@@ -2,6 +2,7 @@ import { itemDetailsData } from '../data/itemDetailsData.js';
 import { VerificationGate } from '../components/VerificationGate.js';
 import { InfoSheet } from '../components/InfoSheet.js';
 import { state } from '../main.js';
+import { computeTrustScore, getTrustLevel, computeBadges } from '../data/trustScores.js';
 
 export function renderItemDetails(itemId = '1') {
   const container = document.createElement('div');
@@ -430,6 +431,143 @@ export function renderItemDetails(itemId = '1') {
       border-color: var(--color-optical-black);
       color: var(--color-optical-black);
     }
+
+    /* Trust Profile styling */
+    .trust-profile {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--color-border);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .trust-score-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .trust-score-display {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+    .trust-score-num {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 300;
+      line-height: 1;
+      color: var(--color-optical-black);
+    }
+    .trust-score-label {
+      font-family: var(--font-utility);
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-anodized-stone);
+    }
+    .trust-score-level {
+      font-family: var(--font-utility);
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-optical-black);
+      background: var(--color-titanium-fog);
+      padding: 3px 8px;
+      font-weight: 500;
+    }
+    .trust-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 12px;
+    }
+    .trust-row {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      align-items: baseline;
+      gap: 12px;
+    }
+    .trust-row-label {
+      font-family: var(--font-utility);
+      font-size: 8px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-anodized-stone);
+    }
+    .trust-row-val {
+      color: var(--color-optical-black);
+      line-height: 1.4;
+    }
+    .trust-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+    .trust-badge-chip {
+      font-family: var(--font-utility);
+      font-size: 8px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border: 1px solid var(--color-optical-black);
+      background: transparent;
+      color: var(--color-optical-black);
+      font-weight: 500;
+      cursor: help;
+      position: relative;
+    }
+    .trust-badge-chip.solid {
+      background: var(--color-optical-black);
+      color: #fff;
+    }
+    .trust-explainer {
+      font-size: 11px;
+      line-height: 1.5;
+      color: var(--color-anodized-stone);
+      background: rgba(3,3,3,0.02);
+      border: 1px solid var(--color-border);
+      padding: 10px 12px;
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 4px;
+    }
+    .trust-explainer.open {
+      display: flex;
+    }
+    .trust-explainer-title {
+      font-family: var(--font-utility);
+      font-size: 8px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-optical-black);
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 4px;
+      margin-bottom: 2px;
+    }
+    .trust-explainer-item {
+      display: flex;
+      justify-content: space-between;
+    }
+    .trust-explainer-btn {
+      font-family: var(--font-utility);
+      font-size: 8px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-anodized-stone);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      text-decoration: underline;
+      align-self: flex-start;
+      padding: 0;
+      margin-top: 4px;
+    }
+    .trust-explainer-btn:hover {
+      color: var(--color-optical-black);
+    }
+
     
     /* Specs table */
     .specs-grid {
@@ -1102,9 +1240,15 @@ export function renderItemDetails(itemId = '1') {
     desktopCtaContainer.appendChild(deskRentBtn);
     sidebar.appendChild(desktopCtaContainer);
 
-    // Owner card
+    // Owner card with Trust Profile
     const ownerSec = document.createElement('div');
     ownerSec.className = 'details-section';
+    
+    // Calculate trust info dynamically
+    const scoreVal = computeTrustScore(originalItem.owner, originalItem.rentalsCompleted);
+    const levelVal = getTrustLevel(scoreVal);
+    const badgeList = computeBadges(originalItem.owner, originalItem.rentalsCompleted);
+    
     ownerSec.innerHTML = `
       <div class="details-section__title">Listed by</div>
       <div class="owner-info">
@@ -1115,13 +1259,61 @@ export function renderItemDetails(itemId = '1') {
             <span class="owner-joined">${originalItem.owner.joined}</span>
           </div>
         </div>
-        <div class="owner-stats">
-          ${originalItem.rentalsCompleted} Rentals Completed<br>
-          ${originalItem.owner.responseTime}
+        
+        <div class="trust-profile">
+          <div class="trust-score-row">
+            <div class="trust-score-display">
+              <span class="trust-score-num">${scoreVal}</span>
+              <span class="trust-score-label">Trust Score</span>
+            </div>
+            <span class="trust-score-level">${levelVal}</span>
+          </div>
+          
+          <div class="trust-grid">
+            <div class="trust-row">
+              <span class="trust-row-label">Identity</span>
+              <span class="trust-row-val">T2 · Verified Identity (ID & Address)</span>
+            </div>
+            <div class="trust-row">
+              <span class="trust-row-label">History</span>
+              <span class="trust-row-val">${originalItem.rentalsCompleted} rentals completed · 0 disputes</span>
+            </div>
+            <div class="trust-row">
+              <span class="trust-row-label">Response</span>
+              <span class="trust-row-val">${originalItem.owner.responseTime}</span>
+            </div>
+          </div>
+          
+          <div class="trust-badges">
+            ${badgeList.map(b => `
+              <span class="trust-badge-chip ${b.id === 'id_verified' ? 'solid' : ''}" title="${b.description}">${b.label}</span>
+            `).join('')}
+          </div>
+          
+          <button class="trust-explainer-btn">About this score</button>
+          
+          <div class="trust-explainer">
+            <div class="trust-explainer-title">Trust Score Breakdown</div>
+            <div class="trust-explainer-item"><span>Base Verification (T2)</span><span>+20</span></div>
+            <div class="trust-explainer-item"><span>Rentals Completed (${originalItem.rentalsCompleted})</span><span>+${originalItem.rentalsCompleted >= 20 ? 15 : originalItem.rentalsCompleted >= 10 ? 10 : originalItem.rentalsCompleted >= 5 ? 5 : 0}</span></div>
+            <div class="trust-explainer-item"><span>Response Speed</span><span>+${originalItem.owner.responseTime.includes('within an hour') || originalItem.owner.responseTime.toLowerCase().includes('1 hour') ? 10 : originalItem.owner.responseTime.includes('within 2 hours') || originalItem.owner.responseTime.toLowerCase().includes('2 hours') ? 7 : originalItem.owner.responseTime.includes('within 4 hours') || originalItem.owner.responseTime.toLowerCase().includes('4 hours') ? 4 : 0}</span></div>
+            <div class="trust-explainer-item"><span>Account Standing</span><span>+${originalItem.owner.joined.includes('2022') || originalItem.owner.joined.includes('2021') || originalItem.owner.joined.includes('2020') ? 5 : originalItem.owner.joined.includes('2023') ? 3 : 2}</span></div>
+            <div style="border-top: 1px solid var(--color-border); margin-top: 4px; padding-top: 4px; font-weight: 500;" class="trust-explainer-item"><span>Total (Capped at 100)</span><span>${scoreVal}</span></div>
+          </div>
         </div>
+        
         <button class="owner-chat-btn">Message Owner</button>
       </div>
     `;
+    
+    // Set up click handlers
+    const explainerBtn = ownerSec.querySelector('.trust-explainer-btn');
+    const explainerNode = ownerSec.querySelector('.trust-explainer');
+    explainerBtn.addEventListener('click', () => {
+      const isOpen = explainerNode.classList.toggle('open');
+      explainerBtn.textContent = isOpen ? 'Hide details' : 'About this score';
+    });
+
     ownerSec.querySelector('.owner-chat-btn').addEventListener('click', () => {
       if (!state.isAuthenticated) {
         const node = document.createElement('div');

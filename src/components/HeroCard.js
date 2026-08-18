@@ -150,6 +150,18 @@ export function createHeroCard(item) {
       font-size: 9px;
       letter-spacing: 0.08em;
       color: var(--color-anodized-stone);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .hero__trust-chip {
+      font-family: var(--font-utility);
+      font-size: 8px;
+      letter-spacing: 0.05em;
+      background: var(--color-optical-black);
+      color: #fff;
+      padding: 1px 4px;
+      font-weight: 500;
     }
     
     .hero__cta {
@@ -189,7 +201,11 @@ export function createHeroCard(item) {
       <p class="hero__desc">${desc}</p>
       <div class="hero__price-row">
         <span class="hero__price">₹${item.pricePerDay.toLocaleString('en-IN')} / day</span>
-        <span class="hero__meta">${item.rentalsCompleted} Rentals Completed</span>
+        <span class="hero__meta">
+          <span>${item.rentalsCompleted} Rentals</span>
+          <span>·</span>
+          <span class="hero__trust-chip" title="Trust Score: ${item.trustScore} (${item.trustLevel})">T · ${item.trustScore}</span>
+        </span>
       </div>
       <button class="hero__cta">View details →</button>
     </div>

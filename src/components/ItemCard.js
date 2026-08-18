@@ -91,6 +91,19 @@ export function createItemCard(item, isWide = false) {
       letter-spacing: 0.08em;
       color: var(--color-anodized-stone);
       margin-top: 2px;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    .pcard__trust-chip {
+      font-family: var(--font-utility);
+      font-size: 8px;
+      letter-spacing: 0.05em;
+      background: var(--color-optical-black);
+      color: #fff;
+      padding: 1px 4px;
+      font-weight: 500;
     }
   `;
   card.appendChild(style);
@@ -105,7 +118,13 @@ export function createItemCard(item, isWide = false) {
         <span class="pcard__name">${item.title}</span>
         <span class="pcard__price">₹${item.pricePerDay.toLocaleString('en-IN')}/day</span>
       </div>
-      <div class="pcard__meta">${item.distance} · ${item.rentalsCompleted} Rentals Completed</div>
+      <div class="pcard__meta">
+        <span>${item.distance}</span>
+        <span>·</span>
+        <span>${item.rentalsCompleted} Rentals</span>
+        <span>·</span>
+        <span class="pcard__trust-chip" title="Trust Score: ${item.trustScore} (${item.trustLevel})">T · ${item.trustScore}</span>
+      </div>
     </div>
   `;
   

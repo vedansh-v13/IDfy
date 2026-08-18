@@ -1,3 +1,6 @@
+import { itemDetailsData } from './itemDetailsData.js';
+import { computeTrustScore, getTrustLevel } from './trustScores.js';
+
 export const mockListings = [
   {
     id: '1',
@@ -220,3 +223,16 @@ export const mockListings = [
     imageUrl: 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?auto=format&fit=crop&q=80&w=800'
   }
 ];
+
+// Dynamically enrich listings with Trust System scores/levels
+mockListings.forEach(listing => {
+  const detail = itemDetailsData[listing.id];
+  if (detail && detail.owner) {
+    listing.trustScore = computeTrustScore(detail.owner, listing.rentalsCompleted);
+    listing.trustLevel = getTrustLevel(listing.trustScore);
+  } else {
+    listing.trustScore = 75;
+    listing.trustLevel = 'High';
+  }
+});
+
