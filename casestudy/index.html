@@ -493,7 +493,7 @@
       background: transparent;
       text-decoration: none;
       display: inline-block;
-      transition: background 0.2s, border-color 0.2s;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
     }
 
     .btn-cta:hover {
@@ -501,9 +501,109 @@
       color: var(--color-optical-black);
       border-color: #fff;
     }
-  </style>
+
+    .btn-cta--amber {
+      border-color: #B8A062;
+      color: #B8A062;
+    }
+
+    .btn-cta--amber:hover {
+      background: #B8A062;
+      color: #030303;
+      border-color: #B8A062;
+    }
+
+    /* ── STICKY TOP NAV BAR ───────────────── */
+    .cs-topnav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      height: 44px;
+      background: rgba(3,3,3,0.90);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      transition: opacity 0.25s;
+    }
+
+    .cs-topnav__left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .cs-topnav__eyebrow {
+      font-family: var(--font-utility);
+      font-size: 8px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+    }
+
+    @media (max-width: 480px) {
+      .cs-topnav__eyebrow { display: none; }
+    }
+
+    .cs-topnav__divider {
+      width: 1px;
+      height: 14px;
+      background: rgba(255,255,255,0.12);
+    }
+
+    .cs-topnav__title {
+      font-family: var(--font-utility);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+    }
+
+    .cs-topnav__proto-link {
+      font-family: var(--font-utility);
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #B8A062;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: opacity 0.15s;
+      padding: 6px 12px;
+      border: 1px solid rgba(184,160,98,0.35);
+    }
+
+    .cs-topnav__proto-link:hover {
+      opacity: 0.7;
+    }
+
+    @media (max-width: 480px) {
+      .cs-topnav { padding: 0 16px; }
+    }
+
+    /* Offset body by nav height so first section isn't hidden */
+    body { padding-top: 44px; }
+</style>
 </head>
 <body>
+
+  <!-- STICKY TOP NAV -->
+  <nav class="cs-topnav" aria-label="Case study navigation">
+    <div class="cs-topnav__left">
+      <span class="cs-topnav__eyebrow">IDfy</span>
+      <div class="cs-topnav__divider"></div>
+      <span class="cs-topnav__title">Product Design Case Study</span>
+    </div>
+    <a href="../" class="cs-topnav__proto-link" aria-label="Open live prototype">
+      &#8592; Live Prototype
+    </a>
+  </nav>
 
   <!-- SECTION 1 — OPENING -->
   <header>
@@ -795,7 +895,10 @@
       <p>
         By designing verification as a contextual response to transaction risk, we protect the open, explorative nature of the marketplace. Trust is not a static badge earned at entry, but a dynamic clearance level scaled to the user's intent.
       </p>
-      <a href="../" class="btn-cta">Try the live prototype →</a>
+      <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 8px;">
+        <a href="../" class="btn-cta btn-cta--amber">&#8592; Live Prototype</a>
+        <a href="#" class="btn-cta">Back to top &uarr;</a>
+      </div>
     </div>
   </footer>
 

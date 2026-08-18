@@ -5,8 +5,58 @@ export function setupHeader() {
   const header = document.createElement('header');
   header.className = 'app-header';
   
+  // ── Case Study Announcement Bar ──────────────
+  const announcementBar = document.createElement('div');
+  announcementBar.className = 'cs-announcement-bar';
+  announcementBar.innerHTML = `
+    <a href="/casestudy/" class="cs-announcement-link">
+      <span class="cs-announcement-label">Product Design Case Study</span>
+      <span class="cs-announcement-cta">Read the Case Study →</span>
+    </a>
+  `;
+  header.appendChild(announcementBar);
+  // ── END Case Study Bar ───────────────────────
+
   const style = document.createElement('style');
   style.textContent = `
+    /* ── Case Study Announcement Bar ─────────── */
+    .cs-announcement-bar {
+      width: 100%;
+      background: var(--color-optical-black);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cs-announcement-link {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      text-decoration: none;
+      padding: 0 16px;
+    }
+    .cs-announcement-label {
+      font-family: var(--font-utility);
+      font-size: 8px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+    .cs-announcement-cta {
+      font-family: var(--font-utility);
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #B8A062;
+      transition: opacity 0.15s;
+    }
+    .cs-announcement-link:hover .cs-announcement-cta {
+      opacity: 0.7;
+    }
+    @media (max-width: 480px) {
+      .cs-announcement-label { display: none; }
+    }
     /* ── Header ─────────────────────────────────── */
     .app-header {
       position: sticky;
@@ -261,6 +311,7 @@ export function setupHeader() {
     { label: 'How it Works', href: '#/how-it-works' },
     { label: 'List an Item', href: '#/list' },
     { label: 'About', href: '#/about' },
+    { label: 'Case Study ↗', href: '/casestudy/', external: true },
   ];
   navItems.forEach((item, i) => {
     const a = document.createElement('a');
@@ -321,6 +372,9 @@ export function setupHeader() {
     a.href = item.href;
     a.className = 'mob-nav-link';
     a.textContent = item.label;
+    if (item.external) {
+      a.style.color = '#B8A062';
+    }
     a.addEventListener('click', () => mobMenu.classList.remove('open'));
     mobLinks.appendChild(a);
   });
